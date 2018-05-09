@@ -29,6 +29,11 @@ export const routes: Routes = [
     path: 'login',
     component: SimpleLayoutComponent,
     loadChildren: './pages/login/login.module#LoginModule'
+  },
+  {
+    path: 'admin',
+    component: FullLayoutComponent,
+    loadChildren: './pages/admin/admin.module#AdminModule'
   }
 ];
 
