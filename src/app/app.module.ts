@@ -5,10 +5,13 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { TokenInterceptor } from './service/token.interceptor';
 
-import { AuthGuard, UserInfoService } from "./service";
+
+import { AuthGuard, UserInfoService } from './service';
+
 const APP_SERVICES = [AuthGuard, UserInfoService];
 
 import { FullLayoutComponent, SimpleLayoutComponent } from './containers';
@@ -75,7 +78,13 @@ const APP_DIRECTIVES = [
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  }, ...APP_SERVICES],
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  },
+  ...APP_SERVICES],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

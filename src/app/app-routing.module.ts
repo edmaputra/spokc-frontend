@@ -33,7 +33,8 @@ export const routes: Routes = [
   {
     path: 'admin',
     component: FullLayoutComponent,
-    loadChildren: './pages/admin/admin.module#AdminModule'
+    loadChildren: './pages/admin/admin.module#AdminModule',
+    // canActivate: [AuthGuard]
   }
 ];
 

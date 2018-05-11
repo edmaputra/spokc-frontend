@@ -10,6 +10,7 @@ import { PegawaiComponent } from './pegawai';
 import { KegiatanComponent } from './kegiatan';
 import { JabatanComponent } from './jabatan';
 
+import { PegawaiService } from '../../service/master/pegawai.service';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { JabatanComponent } from './jabatan';
     PegawaiComponent,
     JabatanComponent,
     KegiatanComponent
-  ]
+  ],
+  
 })
 
 export class AdminModule { }

@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-// import { Injectable } from '@angular/core';
-// import * as jwtDecode from 'jwt-decode';
-// import 'rxjs/add/operator/catch';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable()
 export class UserInfoService {
@@ -19,8 +17,14 @@ export class UserInfoService {
         this.storage.removeItem(this.currentUserKey);
     }
 
+    dapatkanToken() {
+        return this.storage.getItem(this.currentUserKey);
+    }
+
     sudahMasukkah(): boolean {
-        return this.storage.getItem(this.currentUserKey) ? true : false;
+        const helper = new JwtHelperService();
+        const token = this.dapatkanToken();
+        return !helper.isTokenExpired(token);
     }
 
     dapatkanUserInfo() {
