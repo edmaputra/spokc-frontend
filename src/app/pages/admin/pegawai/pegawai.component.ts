@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 import { Jabatan } from '../../../model/master/jabatan';
 import { Pegawai } from '../../../model/master/pegawai';
@@ -11,18 +12,8 @@ import { PegawaiService } from '../../../service/master/pegawai.service';
 
 export class PegawaiComponent implements OnInit {
 
-    // j: Jabatan = { id: 1, nama: 'IT',  level: 1};
-
-
-    pegawais: Pegawai[];
-    // = [
-    //     { id: 1, nama: 'Mr. Nice',  nip: '111', jabatan: this.j},
-    //     { id: 2, nama: 'Narco', nip: '111', jabatan: this.j },
-    //     { id: 3, nama: 'Bombasto', nip: '111', jabatan: this.j },
-    //     { id: 4, nama: 'Celeritas', nip: '111', jabatan: this.j },
-    // ];
-
-
+    public modalHapus;
+    private pegawais: Pegawai[];
 
     constructor(private pegawaiService: PegawaiService) {}
 

@@ -15,13 +15,13 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(public userInfo: UserInfoService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
+    if (this.userInfo.dapatkanToken() !== null){
     request = request.clone({
       setHeaders: {
         Authorization: `Bearer ${this.userInfo.dapatkanToken()}`
       }
     });
-
+  }
     return next.handle(request);
   }
 }

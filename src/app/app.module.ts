@@ -8,11 +8,10 @@ import { environment } from '../environments/environment';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { TokenInterceptor } from './service/token.interceptor';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
-
-import { AuthGuard, UserInfoService } from './service';
-
-const APP_SERVICES = [AuthGuard, UserInfoService];
+import { AuthGuard, UserInfoService, ErrorHandlerService, AlertService, ApiService } from './service';
+const APP_SERVICES = [AuthGuard, UserInfoService, ErrorHandlerService, AlertService, ApiService];
 
 import { FullLayoutComponent, SimpleLayoutComponent } from './containers';
 const APP_CONTAINERS = [
@@ -30,7 +29,8 @@ import {
   AppSidebarFormComponent,
   AppSidebarHeaderComponent,
   AppSidebarMinimizerComponent,
-  APP_SIDEBAR_NAV
+  APP_SIDEBAR_NAV,
+  AlertComponent
 } from './components';
 
 const APP_COMPONENTS = [
@@ -43,7 +43,8 @@ const APP_COMPONENTS = [
   AppSidebarFormComponent,
   AppSidebarHeaderComponent,
   AppSidebarMinimizerComponent,
-  APP_SIDEBAR_NAV
+  APP_SIDEBAR_NAV,
+  AlertComponent
 ];
 
 import {
@@ -70,6 +71,7 @@ const APP_DIRECTIVES = [
   imports: [
     BrowserModule,
     AlertModule.forRoot(),
+    ModalModule.forRoot(),
     BsDropdownModule.forRoot(),
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     AppRoutingModule,

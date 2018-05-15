@@ -2,9 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
-import { UserInfoService } from '../../service/user-info.service'
-
+import { Token } from '../../model/user/token';
+import { UserInfoService } from '../../service/user-info.service';
+import { ErrorHandlerService } from '../../service/error-handler.service';
 
 const clientId = 'SILK-RSDARA-KOBA-CLIENT';
 const secretKey = 'spring-security-oauth2-read-client-password1234';
@@ -22,46 +25,17 @@ export class LoginService {
   public token: string;
   private tokenUrl = 'http://localhost:11011/oauth/token';
 
-  constructor(private http: HttpClient, private userInfoService: UserInfoService) {}
-
-  tokenKey(): Observable<boolean> {
-    const url = 'http://localhost:11011/oauth/token_key';
-    const he = {
-      headers: new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
-    };
-        return this.http.get(url)
-            .map((response: Response) => {
-              console.log(response);
-              return true;
-            });
-  }
+  constructor(private http: HttpClient, private userInfoService: UserInfoService, private errorHandler: ErrorHandlerService) {}
 
   login(username: string, password: string): Observable<boolean> {
-      const url = 'http://localhost:11011/oauth/token?grant_type=password&username=' + username + '&password=' + password;
+    const params = new HttpParams().set('username', username).set('password', password).set('grant_type', 'password');
+    const url = 'http://localhost:11011/oauth/token';
 
-      return this.http.post(url, null, httpOptions)
-      .map((res: Response) => {
-        this.userInfoService.simpanUserInfo(JSON.stringify(res));
+    return this.http.post(url, params, httpOptions)
+      .map((res: Token) => {
+        this.userInfoService.simpanUserInfo(res.access_token);
         return true;
-      }, (err) => {
-        console.log(err.name + 'dd');
-        switch (err.status) {
-          case 401:
-            this.errMsg = 'Username or password is incorrect';
-            break;
-          case 404:
-            this.errMsg = 'Service not found';
-            break;
-          case 408:
-            this.errMsg = 'Request Timedout';
-            break;
-          case 500:
-            this.errMsg = 'Internal Server Error';
-            break;
-          default:
-            this.errMsg = 'Server Error';
-        }
-      });
+      }).catch((err: HttpErrorResponse) => this.errorHandler.handleError(err));
   }
 
     logout() {

@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Token } from '../model/user/token';
 
 @Injectable()
 export class UserInfoService {
 
-    public currentUserKey: string = 'currentUser';
+    public currentUserKey: string = 'access_token';
     public storage: Storage = sessionStorage;
+
 
     constructor() {}
 
-    simpanUserInfo(userInfoString: string) {
-        this.storage.setItem(this.currentUserKey, userInfoString)
+    simpanUserInfo(tokenJwt: any) {
+        this.storage.setItem(this.currentUserKey, tokenJwt);
     }
 
     hapusUserInfo() {
@@ -24,6 +26,7 @@ export class UserInfoService {
     sudahMasukkah(): boolean {
         const helper = new JwtHelperService();
         const token = this.dapatkanToken();
+        
         return !helper.isTokenExpired(token);
     }
 

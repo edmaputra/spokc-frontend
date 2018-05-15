@@ -6,7 +6,7 @@ import { AdminComponent } from './admin.component';
 import { UnitComponent } from './unit';
 import { PegawaiComponent } from './pegawai';
 import { KegiatanComponent } from './kegiatan';
-import { JabatanComponent } from './jabatan';
+import { JabatanComponent, TambahJabatanComponent } from './jabatan';
 
 const routes: Routes = [
     {
@@ -32,6 +32,20 @@ const routes: Routes = [
             {
                 path: 'jabatan',
                 component: JabatanComponent,
+                data: {
+                    title: 'Jabatan'
+                }
+            },
+            {
+                path: 'jabatan/e',
+                component: TambahJabatanComponent,
+                data: {
+                    title: 'Jabatan'
+                }
+            },
+            {
+                path: 'jabatan/e/:id',
+                component: TambahJabatanComponent,
                 data: {
                     title: 'Jabatan'
                 }

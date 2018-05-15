@@ -3,6 +3,24 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8">
+                                <strong style="font-size: 28pt">Pegawai</strong>
+                                <small>Daftar</small>
+                        </div>
+                        <div class="col-lg-4 col-md-4 text-right">
+                            <button class="btn btn-primary btn-lg"><i class="icon-plus"></i></button>
+                            <button class="btn btn-default btn-lg"><i class="icon-printer"></i></button>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
                     <table class="table">
                         <thead>
                             <tr>
@@ -10,21 +28,65 @@
                                 <th>NIP</th>
                                 <th>Jabatan</th>
                                 <th>User</th>
-                                    <th></th>
+                                <th>*</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let peg of pegawais">
-                                <td>{{peg.nama}}</td>
-                                <td>{{peg.nip}}</td>
-                                <td>{{peg.jabatan.nama}}</td>
-                                <td></td>
-                                <td></td>
+                                <tr *ngFor="let pegawai of pegawais">
+                                <td>{{pegawai.nama}}</td>
+                                <td>{{pegawai.nip}}</td>
+                                <td><div *ngFor="let jabatan of pegawai.jabatan">
+                                    {{jabatan.nama}}&nbsp;
+                                    </div>
+                                </td>
+                                <td>
+                                    <div *ngFor="let pengguna of pegawai.pengguna">
+                                        {{pengguna.username}}&nbsp;
+                                    </div>
+                                </td>
+                                <td>
+                                    <button routerLink="/admin/pegawai/{{pegawai.id}}" class="btn btn-primary"><i class="icon-wrench"></i></button>
+                                    <button class="btn btn-danger" data-toggle="modal" (click)="modalHapus.show()"><i class="icon-trash"></i></button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>            
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Pegawai</strong>
+                    <small>Form</small>
+                </div>
+                <div class="card-body"></div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+                    <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div bsModal #modalHapus="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi Hapus</h5>
+            </div>
+            <div class="modal-body">
+              Apakah Anda Yakin Ingin Menghapus Data Ini ?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="modalHapus.hide()">Tidak</button>
+              <button type="button" class="btn btn-danger">Ya, Hapus</button>
+            </div>
         </div>
     </div>
 </div>

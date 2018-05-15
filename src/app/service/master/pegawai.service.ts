@@ -9,14 +9,15 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class PegawaiService {
 
-    private urlPegawai = 'http://localhost:11011/a/p';
+    private url = 'http://localhost:11011/a/p';
 
     constructor(private http: HttpClient) {}
 
     dapatkanSemua(): Observable<Pegawai[]> {
-        return this.http.get(this.urlPegawai)
-            .map((res) => res)
-            .catch((error: any) => Observable.throw(error.json().error || 'Server Error'));
+        return this.http.get(this.url)
+            .map((res) => {
+                return res;
+            })
+            .catch((error: any) => Observable.throw(error.json().error || 'Server Side Error'));
     }
-
 }
