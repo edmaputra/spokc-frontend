@@ -40,8 +40,6 @@ export class JabatanComponent implements OnInit {
     hapus() {
         if (this.idHapus) {
             this.service.hapus(this.idHapus);
-
-        this.autoRefresh();
         }
     }
 
