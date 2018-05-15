@@ -33,11 +33,9 @@ export class ApiService {
         this.http.post(url, body)
             .subscribe((val) => {
                 console.log('POST call successful value returned in body', val);
-                // return val;
              },
                 response => {
                     console.log('POST call in error', response);
-                    // return null;
             },
         () => {
             console.log('The POST observable is now completed.');

@@ -10,13 +10,13 @@ import { AlertService } from './alert.service';
 @Injectable()
 export class ErrorHandlerService {
 
-    errMsg: string = '';
+    // errMsg: string = '';
 
     constructor(private alertService: AlertService) {}
 
     public handleError(error: HttpErrorResponse) {
-        this.alertService.error(error.error.error_description);
-        console.error(error.error.error_description);
+        // this.alertService.error(error.error.error_description);
+        // console.error(error.error.error_description);
         // switch (error.status) {
         //       case 401:
         //         this.errMsg = 'Username or password is incorrect';
@@ -34,7 +34,8 @@ export class ErrorHandlerService {
         //         this.errMsg = 'Server Error';
         //     }
             // console.log(this.errMsg);
-        return Observable.throw(error || 'Server error');
+        console.log(error.error.error_description || error.message || 'Server error');
+        return Observable.throw(error.error.error_description || error.message || 'Server error');
       }
 
 }

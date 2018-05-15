@@ -11,15 +11,17 @@ export class LoginComponent {
   username: string;
   password: string;
 
+  pesan = '';
+
   constructor(private auth: LoginService, private router: Router) { }
 
   login() {
     this.auth.login(this.username, this.password)
     .subscribe(result => {
-      if (result === true) {
+      if (result) {
           this.router.navigate(['/dashboard']);
       } else {
-        console.log('not ok');
+        this.pesan = 'Gagal';
       }
     });
   }
