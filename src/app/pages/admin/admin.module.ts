@@ -6,14 +6,13 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
 
-import { UnitComponent } from './unit';
+import { UnitComponent, TambahUnitComponent } from './unit';
 import { PegawaiComponent } from './pegawai';
 import { KegiatanComponent } from './kegiatan';
 import { JabatanComponent, TambahJabatanComponent } from './jabatan';
 // import { AlertComponent } from '../../components/app-alert';
 
-import { PegawaiService } from '../../service/master/pegawai.service';
-import { JabatanService } from '../../service/master/jabatan.service';
+import { PegawaiService, JabatanService, UnitService } from '../../service/master';
 // import { AlertService } from '../../service/alert.service';
 
 
@@ -30,11 +29,13 @@ import { JabatanService } from '../../service/master/jabatan.service';
     PegawaiComponent,
     JabatanComponent,
     KegiatanComponent,
-    TambahJabatanComponent
+    TambahJabatanComponent,
+    TambahUnitComponent
   ],
   providers: [
     PegawaiService,
-    JabatanService
+    JabatanService,
+    UnitService
   ]
 })
 

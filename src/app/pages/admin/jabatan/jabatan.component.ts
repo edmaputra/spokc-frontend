@@ -34,6 +34,7 @@ export class JabatanComponent implements OnInit {
     }
 
     edit(id: number) {
+        // this.service.ada(id);
         this.router.navigate(['/admin/jabatan/e/', id]);
     }
 

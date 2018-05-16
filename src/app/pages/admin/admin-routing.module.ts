@@ -3,7 +3,7 @@ import { Routes, RouterModule, Router } from '@angular/router';
 
 import { AdminComponent } from './admin.component';
 
-import { UnitComponent } from './unit';
+import { UnitComponent, TambahUnitComponent } from './unit';
 import { PegawaiComponent } from './pegawai';
 import { KegiatanComponent } from './kegiatan';
 import { JabatanComponent, TambahJabatanComponent } from './jabatan';
@@ -53,6 +53,20 @@ const routes: Routes = [
             {
                 path: 'unit',
                 component: UnitComponent,
+                data: {
+                    title: 'Unit'
+                }
+            },
+            {
+                path: 'unit/e',
+                component: TambahUnitComponent,
+                data: {
+                    title: 'Unit'
+                }
+            },
+            {
+                path: 'unit/e/:id',
+                component: TambahUnitComponent,
                 data: {
                     title: 'Unit'
                 }

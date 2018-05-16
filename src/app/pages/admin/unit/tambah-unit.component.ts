@@ -3,21 +3,21 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { FormGroup, FormControl } from '@angular/forms';
 
-import { Jabatan } from '../../../model/master/jabatan';
-import { JabatanService } from '../../../service/master/jabatan.service';
+import { Unit } from '../../../model/master/unit';
+import { UnitService } from '../../../service/master/unit.service';
 
 import { AlertService } from '../../../service/alert.service';
 
 @Component({
-    templateUrl: 'tambah-jabatan.component.html'
+    templateUrl: 'tambah-unit.component.html'
 })
 
-export class TambahJabatanComponent implements OnInit {
+export class TambahUnitComponent implements OnInit {
     @ViewChild('f') form: any;
-    jabatan = new Jabatan();
+    unit = new Unit();
 
     constructor(
-        private service: JabatanService,
+        private service: UnitService,
         private alertService: AlertService,
         private router: Router,
         private route: ActivatedRoute
@@ -29,7 +29,7 @@ export class TambahJabatanComponent implements OnInit {
             const a: any = this.service.dapatkan(id);
             a.subscribe(
                 res => {
-                    this.jabatan = res;
+                    this.unit = res;
                 }
             );
         }
@@ -39,15 +39,15 @@ export class TambahJabatanComponent implements OnInit {
         if (this.form.valid) {
             this.tambah();
             this.form.reset();
-            this.router.navigate(['/admin/jabatan']);
+            this.router.navigate(['/admin/unit']);
         }
     }
 
     tambah() {
-        if (this.jabatan.id) {
-            this.service.update(this.jabatan);
+        if (this.unit.id) {
+            this.service.update(this.unit);
         } else {
-            this.service.simpan(this.jabatan);
+            this.service.simpan(this.unit);
         }
     }
 
