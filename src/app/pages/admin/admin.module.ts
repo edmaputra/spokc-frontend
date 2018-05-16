@@ -30,8 +30,7 @@ import { JabatanService } from '../../service/master/jabatan.service';
     PegawaiComponent,
     JabatanComponent,
     KegiatanComponent,
-    TambahJabatanComponent,
-    
+    TambahJabatanComponent
   ],
   providers: [
     PegawaiService,

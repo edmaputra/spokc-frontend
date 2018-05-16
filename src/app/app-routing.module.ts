@@ -21,7 +21,7 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         loadChildren: './pages/dashboard/dashboard.module#DashboardModule',
-        canActivate: [AuthGuard]
+        // canActivate: [AuthGuard]
       }
     ]
   },
@@ -34,7 +34,7 @@ export const routes: Routes = [
     path: 'admin',
     component: FullLayoutComponent,
     loadChildren: './pages/admin/admin.module#AdminModule',
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   }
 ];
 

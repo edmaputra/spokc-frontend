@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap/modal';
+import { FormGroup, FormControl } from '@angular/forms';
 
 import { Jabatan } from '../../../model/master/jabatan';
 import { JabatanService } from '../../../service/master/jabatan.service';
@@ -12,8 +13,8 @@ import { AlertService } from '../../../service/alert.service';
 })
 
 export class TambahJabatanComponent implements OnInit {
-
-     jabatan = new Jabatan();
+    @ViewChild('f') form: any;
+    jabatan = new Jabatan();
 
     constructor(
         private service: JabatanService,
@@ -31,6 +32,14 @@ export class TambahJabatanComponent implements OnInit {
                     this.jabatan = res;
                 }
             );
+        }
+    }
+
+    onSubmit() {
+        if (this.form.valid) {
+            alert('tambah');
+            // this.tambah();
+            this.form.reset();
         }
     }
 
