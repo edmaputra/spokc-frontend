@@ -4,8 +4,8 @@ import { Routes, RouterModule, Router } from '@angular/router';
 import { AdminComponent } from './admin.component';
 
 import { UnitComponent, TambahUnitComponent } from './unit';
-import { PegawaiComponent } from './pegawai';
-import { KegiatanComponent } from './kegiatan';
+import { PegawaiComponent, TambahPegawaiComponent } from './pegawai';
+import { KegiatanComponent, TambahKegiatanComponent } from './kegiatan';
 import { JabatanComponent, TambahJabatanComponent } from './jabatan';
 
 const routes: Routes = [
@@ -25,6 +25,20 @@ const routes: Routes = [
             {
                 path: 'pegawai',
                 component: PegawaiComponent,
+                data: {
+                    title: 'Pegawai'
+                }
+            },
+            {
+                path: 'pegawai/e',
+                component: TambahPegawaiComponent,
+                data: {
+                    title: 'Pegawai'
+                }
+            },
+            {
+                path: 'pegawai/e/:id',
+                component: TambahPegawaiComponent,
                 data: {
                     title: 'Pegawai'
                 }
@@ -74,6 +88,20 @@ const routes: Routes = [
             {
                 path: 'kegiatan',
                 component: KegiatanComponent,
+                data: {
+                    title: 'Kegiatan'
+                }
+            },
+            {
+                path: 'kegiatan/e',
+                component: TambahKegiatanComponent,
+                data: {
+                    title: 'Kegiatan'
+                }
+            },
+            {
+                path: 'kegiatan/e/:id',
+                component: TambahKegiatanComponent,
                 data: {
                     title: 'Kegiatan'
                 }

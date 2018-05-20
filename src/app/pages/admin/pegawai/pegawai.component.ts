@@ -14,15 +14,16 @@ export class PegawaiComponent implements OnInit {
 
     public modalHapus;
     private pegawais: Pegawai[];
+    private idHapus: number;
 
-    constructor(private pegawaiService: PegawaiService) {}
+    constructor(private service: PegawaiService, private router: Router) {}
 
     ngOnInit() {
         this.dapatkanSemua();
     }
 
     dapatkanSemua() {
-        this.pegawaiService.dapatkanSemua().subscribe(
+        this.service.dapatkanSemua().subscribe(
             pegawai => {
                 this.pegawais = pegawai;
             },
@@ -30,5 +31,25 @@ export class PegawaiComponent implements OnInit {
                 console.log(err);
             }
         );
+    }
+
+
+    edit(id: number) {
+        this.router.navigate(['/admin/pegawai/e/', id]);
+    }
+
+    hapus() {
+        if (this.idHapus) {
+            this.service.hapus(this.idHapus);
+        }
+    }
+
+    setIdHapus(id: number) {
+        this.idHapus = id;
+    }
+
+    autoRefresh() {
+        const element: HTMLElement = document.getElementById('refresh') as HTMLElement;
+        element.click();
     }
 }

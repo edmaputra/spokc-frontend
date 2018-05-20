@@ -21,6 +21,14 @@ export class ApiService {
             .catch((error: any) => Observable.throw(error.json().error || 'Server Side Error'));
     }
 
+    getResponseStatusCode(url: string): Observable<any> {
+        return this.http.get(url, {observe: 'response'})
+            .map((resp) => {
+                return resp;
+            })
+            .catch((error: any) => Observable.throw(error.json().error || 'Server Side Error'));
+    }
+
     gets(url: string, urlParams?: any): Observable<any> {
         return this.http.get(url, urlParams)
             .map((resp) => {

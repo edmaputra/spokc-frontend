@@ -10,9 +10,13 @@ import { AlertService } from './alert.service';
 @Injectable()
 export class ErrorHandlerService {
 
-    // errMsg: string = '';
+    errMsg: string;
 
     constructor(private alertService: AlertService) {}
+
+    public getErrorMessage() {
+        return this.errMsg;
+    }
 
     public handleError(error: HttpErrorResponse) {
         // this.alertService.error(error.error.error_description);
@@ -34,8 +38,9 @@ export class ErrorHandlerService {
         //         this.errMsg = 'Server Error';
         //     }
             // console.log(this.errMsg);
-        console.log(error.error.error_description || error.message || 'Server error');
+        this.errMsg = (error.error.error_description || error.message || 'Server error');
         return Observable.throw(error.error.error_description || error.message || 'Server error');
       }
+
 
 }

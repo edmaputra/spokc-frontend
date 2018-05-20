@@ -20,7 +20,7 @@ const httpOptions = {
 @Injectable()
 export class LoginService {
 
-  errMsg: string = '';
+  errMsg = '';
 
   public token: string;
   private tokenUrl = 'http://localhost:11011/oauth/token';

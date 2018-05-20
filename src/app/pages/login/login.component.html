@@ -2,24 +2,22 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-5">
-                  <div style="text-align: center">
-                      <img src="assets/img/kukar.png" width="120" class="img-fluid" >
-                      <h1>RSU DAYAKU RAJA</h1>
-                      <h6>Aplikasi Penunjang Operasional</h6>
-                  </div>
-                  <br />            
+          <div style="text-align: center">
+            <img src="assets/img/kukar.png" width="120" class="img-fluid" >
+            <h1>RSU DAYAKU RAJA</h1>
+            <h6>Aplikasi Penunjang Operasional</h6>
+          </div>
+        <br />            
         <div class="card-group">
           <div class="card p-4">
             <div class="card-body">
-              <!-- <h3>Login</h3> -->
-              <div *ngIf="pesan" >{{pesan}}</div>
-              <form name="form" (ngSubmit)="login()">
+              <form name="form" (ngSubmit)="login()" novalidate #f="ngForm">
                 <div class="form-group">
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-user"></i></span>
                     </div>
-                    <input type="text" placeholder="Username" class="form-control" name="username" [(ngModel)]="username" />
+                    <input type="text" placeholder="Username" class="form-control" name="username" [(ngModel)]="pengguna.username" required #username="ngModel"/>
                    </div>
                 </div>
 
@@ -28,13 +26,28 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-lock"></i></span>
                     </div>
-                    <input type="password" class="form-control" placeholder="Password" [(ngModel)]="password" name="password">
+                    <input type="password" class="form-control" placeholder="Password" [(ngModel)]="pengguna.password" name="password" required #password="ngModel">
                   </div>
                 </div>
                 <div class="form-group">
-                  <button class="btn btn-primary" style="width: 100%">Login</button>
+                  <button class="btn btn-primary" style="width: 100%" [disabled]="f.invalid || loading">{{loginButton}}</button>
                   </div>
               </form>
+            </div>
+            <div *ngIf="username.errors && (username.dirty || username.touched)">
+              <div class="card-footer">
+                  <div *ngIf="username.errors.required"><p style="text-align: center;">Harap Isi Username</p></div>              
+              </div>
+            </div>
+            <div *ngIf="password.errors && (password.dirty || password.touched)">
+                <div class="card-footer">
+                    <div *ngIf="password.errors.required"><p style="text-align: center;">Harap Isi Password</p></div>
+                </div>
+            </div>
+            <div *ngIf="salah">
+                <div class="card-footer" >
+                    <p style="text-align: center;">{{pesan}}</p>
+                </div>
             </div>
           </div>
         </div>

@@ -1,0 +1,61 @@
+<div class="animated fadeIn">    
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <form name="form" (ngSubmit)="onSubmit()" novalidate #f="ngForm">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Pegawai</strong>
+                    <small>Form</small>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="nama">Nama</label>
+                                <input type="text" class="form-control" id="nama" placeholder="Nama Pegawai" name="nama" [(ngModel)]="pegawai.nama" required #nama="ngModel">
+                                <div  *ngIf="nama.errors && (nama.dirty || nama.touched)" >
+                                    <div *ngIf="nama.errors.required"><div class="help-block">Harap Isi Nama Pegawai</div></div>
+                                </div>
+                            </div>                            
+                        </div> 
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="nip">NIP</label>
+                                <input type="text" class="form-control" id="nip" placeholder="NIP Pegawai" name="nip" [(ngModel)]="pegawai.nip" required #nip="ngModel">
+                                <div  *ngIf="nip.errors && (nip.dirty || nip.touched)" >
+                                    <div *ngIf="nip.errors.required"><div class="help-block">Harap Isi NIP Pegawai</div></div>
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="col-sm-3 col-md-3">
+                            <label for="Jabatan">Jabatan</label>
+                            <ng-select [items]="jabatans" [hideSelected]="true" [(ngModel)]="pegawai.jabatan" bindLabel="nama"
+                                [multiple]="true" clearAllText="Clear" name="jabatan" required>
+                             </ng-select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-md-4">
+                            <label for="unit">Unit</label>
+                            <ng-select [items]="units" [hideSelected]="true" [(ngModel)]="pegawai.unit" bindLabel="nama"
+                                clearAllText="Clear" name="unit" required>
+                             </ng-select>
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <label for="unit">Pengguna</label>
+                            <ng-select [items]="penggunas" [hideSelected]="true" [(ngModel)]="pegawai.pengguna" bindLabel="username"
+                                [multiple]="true" clearAllText="Clear" name="pengguna" required>
+                             </ng-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <input type="hidden" id="id" name="id" [(ngModel)]="pegawai.id" />
+                    <button type="submit" class="btn btn-primary" [disabled]="f.invalid"><i class="fa fa-dot-circle-o"></i> Simpan</button>
+                    <button routerLink="/admin/pegawai" type="reset" class="btn btn-danger"><i class="fa fa-ban"></i> Batal</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
