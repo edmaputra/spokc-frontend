@@ -1,4 +1,4 @@
 export * from './jabatan.service';
 export * from './pegawai.service';
-export * from './unit.service';
-export * from './kegiatan.service';
+export * from './wilayah.service';
+export * from './kantor-divisi.service';

@@ -1,0 +1,47 @@
+<div class="animated fadeIn">    
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <form name="form" (ngSubmit)="onSubmit()" novalidate #f="ngForm">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Kantor - Divisi</strong>
+                    <small>Form</small>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                            <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label for="level">Kode</label>
+                                        <input type="text" class="form-control" id="kode" placeholder="0" name="kode" [(ngModel)]="kantor.kode" required #kode="ngModel">
+                                        <div  *ngIf="kode.errors && (kode.dirty || kode.touched)" >
+                                            <div *ngIf="kode.errors.required"><div class="help-block" >Harap Isi Kode Kantor - Divisi</div></div>
+                                        </div>
+                                    </div>                            
+                                </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="nama">Nama</label>
+                                <input type="text" class="form-control" id="nama" name="nama" [(ngModel)]="kantor.nama" required #nama="ngModel">
+                                <div  *ngIf="nama.errors && (nama.dirty || nama.touched)" >
+                                    <div *ngIf="nama.errors.required"><div class="help-block">Harap Isi Nama Kantor-Divisi</div></div>
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="nama">Wilayah</label>
+                            <ng-select [items]="wilayah" [hideSelected]="true" [(ngModel)]="kantor.wilayah" bindLabel="nama"
+                                 clearAllText="Clear" name="wilayah" required>
+                             </ng-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <input type="hidden" id="id" name="id" [(ngModel)]="kantor.id" />
+                    <button type="submit" class="btn btn-primary" [disabled]="f.invalid"><i class="fa fa-dot-circle-o"></i> Simpan</button>
+                    <button routerLink="/admin/kantor" type="reset" class="btn btn-danger"><i class="fa fa-ban"></i> Batal</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

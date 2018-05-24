@@ -18,7 +18,7 @@ export class LoginComponent {
   loginButton = 'Login';
   @ViewChild('f') form: any;
 
-  constructor(private auth: LoginService, private router: Router) { }
+  constructor(private auth: LoginService, private router: Router) {}
 
   login() {
     if (this.form.valid) {
@@ -45,5 +45,6 @@ export class LoginComponent {
     loadingFalse() {
       this.loading = false;
       this.loginButton = 'Login';
+      this.form.reset();
     }
 }

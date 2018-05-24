@@ -5,7 +5,7 @@ import { Token } from '../model/user/token';
 @Injectable()
 export class UserInfoService {
 
-    public currentUserKey: string = 'access_token';
+    public currentUserKey = 'access_token';
     public storage: Storage = sessionStorage;
 
 
@@ -26,7 +26,7 @@ export class UserInfoService {
     sudahMasukkah(): boolean {
         const helper = new JwtHelperService();
         const token = this.dapatkanToken();
-        
+
         return !helper.isTokenExpired(token);
     }
 

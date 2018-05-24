@@ -7,20 +7,22 @@ import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
 import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
 
-import { UnitComponent, TambahUnitComponent } from './unit';
+import { WilayahComponent, TambahWilayahComponent } from './wilayah';
 import { PegawaiComponent, TambahPegawaiComponent } from './pegawai';
-import { KegiatanComponent, TambahKegiatanComponent } from './kegiatan';
 import { JabatanComponent, TambahJabatanComponent } from './jabatan';
+import { KantorComponent, TambahKantorComponent } from './kantor';
+import { PenggunaComponent, TambahPenggunaComponent } from './pengguna';
 const ADMIN_COMPONENTS = [
-  UnitComponent, TambahUnitComponent,
+  WilayahComponent, TambahWilayahComponent,
   PegawaiComponent, TambahPegawaiComponent,
-  KegiatanComponent, TambahKegiatanComponent,
-  JabatanComponent, TambahJabatanComponent
+  JabatanComponent, TambahJabatanComponent,
+  KantorComponent, TambahKantorComponent,
+  PenggunaComponent, TambahPenggunaComponent
 ];
 
-import { PegawaiService, JabatanService, UnitService, KegiatanService } from '../../service/master';
-import { PenggunaService } from '../../service/user';
-const ADMIN_SERVICES = [PegawaiService, JabatanService, UnitService, KegiatanService, PenggunaService];
+import { PegawaiService, JabatanService, WilayahService, KantorDivisiService } from '../../service/master';
+import { PenggunaService, OtoritasService } from '../../service/user';
+const ADMIN_SERVICES = [PegawaiService, JabatanService, PenggunaService, WilayahService, KantorDivisiService, OtoritasService];
 
 
 @NgModule({
@@ -40,11 +42,11 @@ const ADMIN_SERVICES = [PegawaiService, JabatanService, UnitService, KegiatanSer
     {
       provide: NG_SELECT_DEFAULT_CONFIG,
       useValue: {
-          notFoundText: 'Items not found',
-          addTagText: 'Add item',
-          typeToSearchText: 'Type to search',
-          loadingText: 'Loading...',
-          clearAllText: 'Clear all'
+          notFoundText: 'Item Tidak Ditemukan',
+          addTagText: 'Tambah item',
+          typeToSearchText: 'Ketik untuk Mencari',
+          loadingText: 'Memuat...',
+          clearAllText: 'Bersihkan Semua'
       }
   }
   ]

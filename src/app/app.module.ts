@@ -9,9 +9,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { TokenInterceptor } from './service/token.interceptor';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { ToastrModule } from 'ngx-toastr';
+
+import { AppConfig } from './app-config';
 import { AuthGuard, UserInfoService, ErrorHandlerService, AlertService, ApiService } from './service';
-const APP_SERVICES = [AuthGuard, UserInfoService, ErrorHandlerService, AlertService, ApiService];
+const APP_SERVICES = [AuthGuard, UserInfoService, ErrorHandlerService, AlertService, ApiService, AppConfig];
 
 import { FullLayoutComponent, SimpleLayoutComponent } from './containers';
 const APP_CONTAINERS = [
@@ -53,6 +57,7 @@ import {
   ReplaceDirective,
   SIDEBAR_TOGGLE_DIRECTIVES
 } from './directives';
+import { Browser } from 'protractor';
 
 const APP_DIRECTIVES = [
   AsideToggleDirective,
@@ -75,7 +80,9 @@ const APP_DIRECTIVES = [
     BsDropdownModule.forRoot(),
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [{
     provide: LocationStrategy,

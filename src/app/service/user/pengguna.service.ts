@@ -7,21 +7,26 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
+import { AppConfig } from '../../app-config';
+
 import { ApiService } from '../../service/api.service';
 
 @Injectable()
 export class PenggunaService {
 
-    private url = 'http://localhost:11011/a/user/';
+    private url;
     private pengguna: Pengguna;
 
-    constructor(private http: HttpClient, private api: ApiService) {}
+    constructor(private http: HttpClient, private api: ApiService, private appConfig: AppConfig) {
+        this.url = appConfig.getAPI();
+        this.url = this.url + '/a/user/';
+    }
 
-    setUnit(pengguna: Pengguna) {
+    setPengguna(pengguna: Pengguna) {
         this.pengguna = pengguna;
     }
 
-    getUnit(): Pengguna {
+    getPengguna(): Pengguna {
         return this.pengguna;
     }
 

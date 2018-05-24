@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Jabatan } from '../../model/master/jabatan';
+import { KantorDivisi } from '../../model/master/kantor-divisi';
 
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
@@ -11,29 +11,29 @@ import { AppConfig } from '../../app-config';
 import { ApiService } from '../../service/api.service';
 
 @Injectable()
-export class JabatanService {
+export class KantorDivisiService {
 
     private url;
-    private jabatan: Jabatan;
+    private kantorDivisi: KantorDivisi;
 
     constructor(private http: HttpClient, private api: ApiService, private appConfig: AppConfig) {
         this.url = appConfig.getAPI();
-        this.url = this.url + '/a/jabatan/';
+        this.url = this.url + '/a/kd/';
     }
 
-    setJabatan(jabatan: Jabatan) {
-        this.jabatan = jabatan;
+    setJabatan(kantorDivisi: KantorDivisi) {
+        this.kantorDivisi = kantorDivisi;
     }
 
-    getJabatan(): Jabatan {
-        return this.jabatan;
+    getJabatan(): KantorDivisi {
+        return this.kantorDivisi;
     }
 
-    dapatkanSemua(): Observable<Jabatan[]> {
+    dapatkanSemua(): Observable<KantorDivisi[]> {
         return this.api.get(this.url);
     }
 
-    dapatkanSemuaNama(): Observable<Jabatan[]> {
+    dapatkanSemuaNama(): Observable<KantorDivisi[]> {
         const nama = this.url + 'nama';
         return this.api.get(nama);
     }
@@ -52,11 +52,11 @@ export class JabatanService {
         }
     }
 
-    simpan(jabatan: Jabatan) {
+    simpan(jabatan: KantorDivisi) {
         this.api.post(this.url, jabatan);
     }
 
-    update(jabatan: Jabatan) {
+    update(jabatan: KantorDivisi) {
         this.api.put(this.url, jabatan);
     }
 

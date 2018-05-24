@@ -3,33 +3,38 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { FormGroup, FormControl } from '@angular/forms';
 
-import { Unit } from '../../../model/master/unit';
-import { UnitService } from '../../../service/master/unit.service';
+import { Wilayah } from '../../../model/master/wilayah';
+import { KantorDivisi } from '../../../model/master/kantor-divisi';
+import { WilayahService } from '../../../service/master/wilayah.service';
+import { KantorDivisiService } from '../../../service/master/kantor-divisi.service';
 
 import { AlertService } from '../../../service/alert.service';
 
 @Component({
-    templateUrl: 'tambah-unit.component.html'
+    templateUrl: 'tambah-kantor.component.html'
 })
 
-export class TambahUnitComponent implements OnInit {
+export class TambahKantorComponent implements OnInit {
     @ViewChild('f') form: any;
-    unit = new Unit();
+    kantor = new KantorDivisi();
+    wilayah: Wilayah[];
 
     constructor(
-        private service: UnitService,
+        private wilayahService: WilayahService,
+        private service: KantorDivisiService,
         private alertService: AlertService,
         private router: Router,
         private route: ActivatedRoute
     ) {}
 
     ngOnInit() {
+        this.wilayahService.dapatkanSemua().subscribe(resp => this.wilayah = resp);
         const id = this.route.snapshot.paramMap.get('id');
         if (id) {
             const a: any = this.service.dapatkan(id);
             a.subscribe(
                 res => {
-                    this.unit = res;
+                    this.kantor = res;
                 }
             );
         }
@@ -39,15 +44,15 @@ export class TambahUnitComponent implements OnInit {
         if (this.form.valid) {
             this.tambah();
             this.form.reset();
-            this.router.navigate(['/admin/unit']);
+            this.router.navigate(['/admin/kantor']);
         }
     }
 
     tambah() {
-        if (this.unit.id) {
-            this.service.update(this.unit);
+        if (this.kantor.id) {
+            this.service.update(this.kantor);
         } else {
-            this.service.simpan(this.unit);
+            this.service.simpan(this.kantor);
         }
     }
 

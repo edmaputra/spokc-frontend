@@ -2,21 +2,20 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 
-import { Kegiatan } from '../../../model/master/kegiatan';
-import { KegiatanService } from '../../../service/master/kegiatan.service';
+import { Pengguna } from '../../../model/user/pengguna';
+import { PenggunaService } from '../../../service/user/pengguna.service';
 
 @Component({
-    templateUrl: 'kegiatan.component.html'
+    templateUrl: 'pengguna.component.html'
 })
 
-export class KegiatanComponent implements OnInit {
+export class PenggunaComponent implements OnInit {
 
     public modalHapus;
-    private kegiatans: Kegiatan[];
-    private kegiatan: Kegiatan;
+    private penggunas: Pengguna[];
     private idHapus: number;
 
-    constructor(private service: KegiatanService, private router: Router) {}
+    constructor(private service: PenggunaService, private router: Router) {}
 
     ngOnInit() {
         this.dapatkanSemua();
@@ -24,17 +23,14 @@ export class KegiatanComponent implements OnInit {
 
     dapatkanSemua() {
         this.service.dapatkanSemua().subscribe(
-            js => {
-                this.kegiatans = js;
-            },
-            err => {
-                console.log(err);
-            }
+            resp => this.penggunas = resp,
+            err => console.log(err)
         );
     }
 
+
     edit(id: number) {
-        this.router.navigate(['/admin/kegiatan/e/', id]);
+        this.router.navigate(['/admin/pengguna/e/', id]);
     }
 
     hapus() {
@@ -50,9 +46,5 @@ export class KegiatanComponent implements OnInit {
     autoRefresh() {
         const element: HTMLElement = document.getElementById('refresh') as HTMLElement;
         element.click();
-    }
-
-    isExist(id: number) {
-        this.service.isExist(id);
     }
 }

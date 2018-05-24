@@ -5,11 +5,10 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { NgOption } from '@ng-select/ng-select';
 import { Observable } from 'rxjs/Observable';
 
-import { Pegawai } from '../../../model/master/pegawai';
-import { Jabatan } from '../../../model/master/jabatan';
+import { Pegawai, Jabatan, KantorDivisi } from '../../../model/master';
 import { Pengguna } from '../../../model/user/pengguna';
-import { Unit } from '../../../model/master/unit';
-import { PegawaiService, JabatanService, UnitService } from '../../../service/master';
+// import { Unit } from '../../../model/master/unit';
+import { PegawaiService, JabatanService, KantorDivisiService } from '../../../service/master';
 import { PenggunaService } from '../../../service/user/pengguna.service';
 
 import { AlertService } from '../../../service/alert.service';
@@ -23,13 +22,13 @@ export class TambahPegawaiComponent implements OnInit {
     @ViewChild('f') form: any;
     public pegawai = new Pegawai();
     jabatans: Jabatan[];
-    units: Unit[];
+    kantors: KantorDivisi[];
     penggunas: Pengguna[];
 
     constructor(
         private service: PegawaiService,
         private jabatanService: JabatanService,
-        private unitService: UnitService,
+        private kdService: KantorDivisiService,
         private penggunaService: PenggunaService,
         private alertService: AlertService,
         private router: Router,
@@ -38,13 +37,12 @@ export class TambahPegawaiComponent implements OnInit {
 
     ngOnInit() {
         this.jabatanService.dapatkanSemua().subscribe(resp => this.jabatans = resp);
-        this.unitService.dapatkanSemua().subscribe(resp => this.units = resp);
+        this.kdService.dapatkanSemua().subscribe(resp => this.kantors = resp);
         this.penggunaService.dapatkanSemua().subscribe(resp => this.penggunas = resp);
         const id = this.route.snapshot.paramMap.get('id');
         if (id) {
             this.service.dapatkan(id).subscribe(res => {
                 this.pegawai = res;
-                console.log(res);
             });
         }
     }

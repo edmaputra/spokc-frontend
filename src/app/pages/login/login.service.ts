@@ -9,7 +9,7 @@ import { Token } from '../../model/user/token';
 import { UserInfoService } from '../../service/user-info.service';
 import { ErrorHandlerService } from '../../service/error-handler.service';
 
-const clientId = 'SILK-RSDARA-KOBA-CLIENT';
+const clientId = 'SPOKC-WEBCLIENT';
 const secretKey = 'spring-security-oauth2-read-client-password1234';
 const basicAuth = btoa(clientId + ':' + secretKey);
 
@@ -20,18 +20,15 @@ const httpOptions = {
 @Injectable()
 export class LoginService {
 
-  errMsg = '';
-
   public token: string;
-  private tokenUrl = 'http://localhost:11011/oauth/token';
+  private tokenUrl = 'http://localhost:9292/oauth/token';
 
   constructor(private http: HttpClient, private userInfoService: UserInfoService, private errorHandler: ErrorHandlerService) {}
 
   login(username: string, password: string): Observable<boolean> {
     const params = new HttpParams().set('username', username).set('password', password).set('grant_type', 'password');
-    const url = 'http://localhost:11011/oauth/token';
 
-    return this.http.post(url, params, httpOptions)
+    return this.http.post(this.tokenUrl, params, httpOptions)
       .map((res: Token) => {
         this.userInfoService.simpanUserInfo(res.access_token);
         return true;

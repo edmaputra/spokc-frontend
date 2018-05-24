@@ -3,10 +3,11 @@ import { Routes, RouterModule, Router } from '@angular/router';
 
 import { AdminComponent } from './admin.component';
 
-import { UnitComponent, TambahUnitComponent } from './unit';
+import { WilayahComponent, TambahWilayahComponent } from './wilayah';
 import { PegawaiComponent, TambahPegawaiComponent } from './pegawai';
-import { KegiatanComponent, TambahKegiatanComponent } from './kegiatan';
 import { JabatanComponent, TambahJabatanComponent } from './jabatan';
+import { KantorComponent, TambahKantorComponent } from './kantor';
+import { PenggunaComponent, TambahPenggunaComponent } from './pengguna';
 
 const routes: Routes = [
     {
@@ -65,45 +66,66 @@ const routes: Routes = [
                 }
             },
             {
-                path: 'unit',
-                component: UnitComponent,
+                path: 'wilayah',
+                component: WilayahComponent,
                 data: {
-                    title: 'Unit'
+                    title: 'Wilayah'
                 }
             },
             {
-                path: 'unit/e',
-                component: TambahUnitComponent,
+                path: 'wilayah/e',
+                component: TambahWilayahComponent,
                 data: {
-                    title: 'Unit'
+                    title: 'Wilayah'
                 }
             },
             {
-                path: 'unit/e/:id',
-                component: TambahUnitComponent,
+                path: 'wilayah/e/:id',
+                component: TambahWilayahComponent,
                 data: {
-                    title: 'Unit'
+                    title: 'Wilayah'
                 }
             },
             {
-                path: 'kegiatan',
-                component: KegiatanComponent,
+                path: 'kantor',
+                component: KantorComponent,
                 data: {
-                    title: 'Kegiatan'
+                    title: 'Kantor'
                 }
             },
             {
-                path: 'kegiatan/e',
-                component: TambahKegiatanComponent,
+                path: 'kantor/e',
+                component: TambahKantorComponent,
                 data: {
-                    title: 'Kegiatan'
+                    title: 'Kantor'
                 }
             },
             {
-                path: 'kegiatan/e/:id',
-                component: TambahKegiatanComponent,
+                path: 'kantor/e/:id',
+                component: TambahKantorComponent,
                 data: {
-                    title: 'Kegiatan'
+                    title: 'Kantor'
+                }
+            },
+            {
+                path: 'pengguna',
+                component: PenggunaComponent,
+                data: {
+                    title: 'Pengguna'
+                }
+            },
+            {
+                path: 'pengguna/e',
+                component: TambahPenggunaComponent,
+                data: {
+                    title: 'Pengguna'
+                }
+            },
+            {
+                path: 'pengguna/e/:id',
+                component: TambahPenggunaComponent,
+                data: {
+                    title: 'Pengguna'
                 }
             },
         ]

@@ -2,20 +2,21 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 
-import { Unit } from '../../../model/master/unit';
-import { UnitService } from '../../../service/master/unit.service';
+import { Wilayah } from '../../../model/master/wilayah';
+import { WilayahService } from '../../../service/master/wilayah.service';
 
 @Component({
-    templateUrl: 'unit.component.html'
+    templateUrl: 'wilayah.component.html'
 })
 
-export class UnitComponent implements OnInit {
+export class WilayahComponent implements OnInit {
+
     public modalHapus;
-    private units: Unit[];
-    private unit: Unit;
+    private wilayahs: Wilayah[];
+    private wilayah: Wilayah;
     private idHapus: number;
 
-    constructor(private service: UnitService, private router: Router) {}
+    constructor(private service: WilayahService, private router: Router) {}
 
     ngOnInit() {
         this.dapatkanSemua();
@@ -23,18 +24,16 @@ export class UnitComponent implements OnInit {
 
     dapatkanSemua() {
         this.service.dapatkanSemua().subscribe(
-            js => {
-                this.units = js;
+            resp => {
+                this.wilayahs = resp;
             },
-            err => {
-                console.log(err);
-            }
+            err => console.log(err)
         );
     }
 
     edit(id: number) {
         // this.service.ada(id);
-        this.router.navigate(['/admin/unit/e/', id]);
+        this.router.navigate(['/admin/wilayah/e/', id]);
     }
 
     hapus() {

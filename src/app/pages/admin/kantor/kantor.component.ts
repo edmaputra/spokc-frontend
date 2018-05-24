@@ -2,20 +2,21 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 
-import { Pegawai } from '../../../model/master';
-import { PegawaiService } from '../../../service/master/pegawai.service';
+import { KantorDivisi } from '../../../model/master/kantor-divisi';
+import { KantorDivisiService } from '../../../service/master/kantor-divisi.service';
 
 @Component({
-    templateUrl: 'pegawai.component.html'
+    templateUrl: 'kantor.component.html'
 })
 
-export class PegawaiComponent implements OnInit {
+export class KantorComponent implements OnInit {
 
     public modalHapus;
-    private pegawais: Pegawai[];
+    private kantors: KantorDivisi[];
+    private kantor: KantorDivisi;
     private idHapus: number;
 
-    constructor(private service: PegawaiService, private router: Router) {}
+    constructor(private service: KantorDivisiService, private router: Router) {}
 
     ngOnInit() {
         this.dapatkanSemua();
@@ -23,18 +24,16 @@ export class PegawaiComponent implements OnInit {
 
     dapatkanSemua() {
         this.service.dapatkanSemua().subscribe(
-            pegawai => {
-                this.pegawais = pegawai;
+            resp => {
+                this.kantors = resp;
             },
-            err => {
-                console.log(err);
-            }
+            err => console.log(err)
         );
     }
 
-
     edit(id: number) {
-        this.router.navigate(['/admin/pegawai/e/', id]);
+        // this.service.ada(id);
+        this.router.navigate(['/admin/kantor/e/', id]);
     }
 
     hapus() {

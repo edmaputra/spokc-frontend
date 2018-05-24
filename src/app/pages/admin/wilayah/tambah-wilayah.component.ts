@@ -3,21 +3,21 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { FormGroup, FormControl } from '@angular/forms';
 
-import { Kegiatan } from '../../../model/master/kegiatan';
-import { KegiatanService } from '../../../service/master/kegiatan.service';
+import { Wilayah } from '../../../model/master/wilayah';
+import { WilayahService } from '../../../service/master/wilayah.service';
 
 import { AlertService } from '../../../service/alert.service';
 
 @Component({
-    templateUrl: 'tambah-kegiatan.component.html'
+    templateUrl: 'tambah-wilayah.component.html'
 })
 
-export class TambahKegiatanComponent implements OnInit {
+export class TambahWilayahComponent implements OnInit {
     @ViewChild('f') form: any;
-    kegiatan = new Kegiatan();
+    wilayah = new Wilayah();
 
     constructor(
-        private service: KegiatanService,
+        private service: WilayahService,
         private alertService: AlertService,
         private router: Router,
         private route: ActivatedRoute
@@ -29,7 +29,7 @@ export class TambahKegiatanComponent implements OnInit {
             const a: any = this.service.dapatkan(id);
             a.subscribe(
                 res => {
-                    this.kegiatan = res;
+                    this.wilayah = res;
                 }
             );
         }
@@ -39,15 +39,15 @@ export class TambahKegiatanComponent implements OnInit {
         if (this.form.valid) {
             this.tambah();
             this.form.reset();
-            this.router.navigate(['/admin/kegiatan']);
+            this.router.navigate(['/admin/wilayah']);
         }
     }
 
     tambah() {
-        if (this.kegiatan.id) {
-            this.service.update(this.kegiatan);
+        if (this.wilayah.id) {
+            this.service.update(this.wilayah);
         } else {
-            this.service.simpan(this.kegiatan);
+            this.service.simpan(this.wilayah);
         }
     }
 

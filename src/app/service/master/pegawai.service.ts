@@ -6,15 +6,19 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Observable';
 
+import { AppConfig } from '../../app-config';
 import { ApiService } from '../../service/api.service';
 
 @Injectable()
 export class PegawaiService {
 
-    private url = 'http://localhost:11011/a/p/';
+    private url;
     private pegawai: Pegawai;
 
-    constructor(private http: HttpClient, private api: ApiService) {}
+    constructor(private http: HttpClient, private api: ApiService, private appConfig: AppConfig) {
+        this.url = appConfig.getAPI();
+        this.url = this.url + '/a/p/';
+    }
 
     setUnit(pegawai: Pegawai) {
         this.pegawai = pegawai;
