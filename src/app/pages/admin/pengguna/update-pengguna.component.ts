@@ -11,11 +11,11 @@ import { PenggunaService, OtoritasService } from '../../../service/user';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-    templateUrl: 'tambah-pengguna.component.html',
+    templateUrl: 'update-pengguna.component.html',
     styles: ['.bigCheckBox {width: 25px; height: 25px;}']
 })
 
-export class TambahPenggunaComponent implements OnInit {
+export class UpdatePenggunaComponent implements OnInit {
     @ViewChild('f') form: any;
     public pengguna = new Pengguna();
     otoritas: Otoritas[];
@@ -35,37 +35,23 @@ export class TambahPenggunaComponent implements OnInit {
         if (id) {
             this.penggunaService.dapatkan(id).subscribe(res => {
                 this.pengguna = res;
+                this.penggunaOld = this.pengguna.username;
             });
         }
     }
 
     onSubmit() {
         if (this.form.valid) {
-            if (!this.cekKesamaanPassword(this.pengguna.password, this.pengguna.passwordKonfirmasi)) {
-                this.toaster.warning('Password Tidak Sama');
-            } else {
-                this.tambah();
-                this.form.reset();
-                this.router.navigate(['/admin/pengguna']);
-            }
+            this.simpan();
+            this.form.reset();
+            this.router.navigate(['/admin/pengguna']);
         }
     }
 
-    tambah() {
+    simpan() {
         if (this.pengguna.id) {
             this.penggunaService.update(this.pengguna);
             this.toaster.success('Pengguna "' + this.penggunaOld + ' => ' + this.pengguna.username + '"', 'Edit Sukses');
-        } else {
-            this.penggunaService.simpan(this.pengguna);
-            this.toaster.success('Pengguna "' + this.pengguna.username + '" ', 'Tambah Sukses');
-        }
-    }
-
-    cekKesamaanPassword(password, passwordKonfirmasi): boolean {
-        if (password === passwordKonfirmasi) {
-            return true;
-        } else {
-            return false;
         }
     }
 

@@ -11,19 +11,20 @@ import { WilayahComponent, TambahWilayahComponent } from './wilayah';
 import { PegawaiComponent, TambahPegawaiComponent } from './pegawai';
 import { JabatanComponent, TambahJabatanComponent } from './jabatan';
 import { KantorComponent, TambahKantorComponent } from './kantor';
-import { PenggunaComponent, TambahPenggunaComponent } from './pengguna';
+import { PenggunaComponent, TambahPenggunaComponent, UpdatePenggunaComponent } from './pengguna';
 const ADMIN_COMPONENTS = [
   WilayahComponent, TambahWilayahComponent,
   PegawaiComponent, TambahPegawaiComponent,
   JabatanComponent, TambahJabatanComponent,
   KantorComponent, TambahKantorComponent,
-  PenggunaComponent, TambahPenggunaComponent
+  PenggunaComponent, TambahPenggunaComponent, UpdatePenggunaComponent
 ];
 
 import { PegawaiService, JabatanService, WilayahService, KantorDivisiService } from '../../service/master';
 import { PenggunaService, OtoritasService } from '../../service/user';
 const ADMIN_SERVICES = [PegawaiService, JabatanService, PenggunaService, WilayahService, KantorDivisiService, OtoritasService];
 
+import { EqualValidator } from '../../directives/equal-validator';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ const ADMIN_SERVICES = [PegawaiService, JabatanService, PenggunaService, Wilayah
   ],
   declarations: [
     AdminComponent,
+    EqualValidator,
     ...ADMIN_COMPONENTS
   ],
   providers: [

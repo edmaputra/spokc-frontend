@@ -5,6 +5,8 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Jabatan } from '../../../model/master/jabatan';
 import { JabatanService } from '../../../service/master/jabatan.service';
 
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
     templateUrl: 'jabatan.component.html'
 })
@@ -16,7 +18,7 @@ export class JabatanComponent implements OnInit {
     private jabatan: Jabatan;
     private idHapus: number;
 
-    constructor(private service: JabatanService, private router: Router) {}
+    constructor(private service: JabatanService, private router: Router, private toaster: ToastrService) {}
 
     ngOnInit() {
         this.dapatkanSemua();
@@ -41,6 +43,7 @@ export class JabatanComponent implements OnInit {
     hapus() {
         if (this.idHapus) {
             this.service.hapus(this.idHapus);
+            this.toaster.info('ID Jabatan "' + this.idHapus + '" Terhapus', 'Hapus Berhasil');
         }
     }
 

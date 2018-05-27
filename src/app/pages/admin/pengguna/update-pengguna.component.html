@@ -27,31 +27,6 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-6 col-md-6">
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" name="password" [(ngModel)]="pengguna.password" required #password="ngModel" validateEqual="passwordKonfirmasi" reverse="true" minlength="6">
-                                <div  *ngIf="password.errors && (password.dirty || password.touched)" >
-                                    <div *ngIf="password.errors.required"><small class="text-danger">Harap Isi Password</small></div>
-                                    <div *ngIf="password.errors.minlength"><small class="text-danger">Isi Password lebih dari 6 karakter</small></div>
-                                </div>                                
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6">
-                            <div class="form-group">
-                                <label for="password">Konfirmasi Password</label>
-                                <input type="password" class="form-control" id="passwordKonfirmasi" name="passwordKonfirmasi" [(ngModel)]="pengguna.passwordKonfirmasi" required #passwordKonfirmasi="ngModel" validateEqual="password" reverse="false" minlength="6">
-                                <div  *ngIf="passwordKonfirmasi.errors && (passwordKonfirmasi.dirty || passwordKonfirmasi.touched)" >
-                                    <div *ngIf="passwordKonfirmasi.errors.required"><small class="text-danger">Harap Isi Konfirmasi Password</small></div>
-                                    <div *ngIf="passwordKonfirmasi.errors.minlength"><small class="text-danger">Isi Password lebih dari 6 karakter</small></div>
-                                </div>
-                                <small [hidden]="passwordKonfirmasi.valid || (passwordKonfirmasi.pristine && !f.submitted)" class="text-danger">
-                                    Password Tidak Sama
-                                </small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="col-sm-3 col-md-3">
                             <label for="enable">Enable</label>
                             <input type="checkbox" class="form-control" id="enabled" name="enabled" [(ngModel)]="pengguna.enabled" #enabled="ngModel"/>

@@ -5,6 +5,8 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Wilayah } from '../../../model/master/wilayah';
 import { WilayahService } from '../../../service/master/wilayah.service';
 
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
     templateUrl: 'wilayah.component.html'
 })
@@ -16,7 +18,7 @@ export class WilayahComponent implements OnInit {
     private wilayah: Wilayah;
     private idHapus: number;
 
-    constructor(private service: WilayahService, private router: Router) {}
+    constructor(private service: WilayahService, private router: Router, private toaster: ToastrService) {}
 
     ngOnInit() {
         this.dapatkanSemua();
@@ -39,6 +41,7 @@ export class WilayahComponent implements OnInit {
     hapus() {
         if (this.idHapus) {
             this.service.hapus(this.idHapus);
+            this.toaster.info('ID Wilayah "' + this.idHapus, 'Hapus Berhasil');
         }
     }
 

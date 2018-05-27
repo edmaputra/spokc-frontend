@@ -12,5 +12,10 @@ export const navigation = [
     name: 'Administrator',
     url: '/admin',
     icon: 'icon-speedometer',
+  },
+  {
+    name: 'Serah Terima User',
+    url: '/stu',
+    icon: 'icon-people',
   }
 ];

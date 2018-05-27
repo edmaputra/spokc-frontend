@@ -11,10 +11,9 @@ import { Pengguna } from '../../../model/user/pengguna';
 import { PegawaiService, JabatanService, KantorDivisiService } from '../../../service/master';
 import { PenggunaService } from '../../../service/user/pengguna.service';
 
-import { AlertService } from '../../../service/alert.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
-    // changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: 'tambah-pegawai.component.html'
 })
 
@@ -24,13 +23,14 @@ export class TambahPegawaiComponent implements OnInit {
     jabatans: Jabatan[];
     kantors: KantorDivisi[];
     penggunas: Pengguna[];
+    pegawaiOld: string;
 
     constructor(
         private service: PegawaiService,
         private jabatanService: JabatanService,
         private kdService: KantorDivisiService,
         private penggunaService: PenggunaService,
-        private alertService: AlertService,
+        private toaster: ToastrService,
         private router: Router,
         private route: ActivatedRoute
     ) {}
@@ -43,6 +43,7 @@ export class TambahPegawaiComponent implements OnInit {
         if (id) {
             this.service.dapatkan(id).subscribe(res => {
                 this.pegawai = res;
+                this.pegawaiOld = this.pegawai.nama;
             });
         }
     }
@@ -57,10 +58,11 @@ export class TambahPegawaiComponent implements OnInit {
 
     tambah() {
         if (this.pegawai.id) {
-            console.log('Update: ' + this.pegawai);
             this.service.update(this.pegawai);
+            this.toaster.success('Pegawai "' + this.pegawaiOld + ' => ' + this.pegawai.nama + '"', 'Edit Sukses');
         } else {
             this.service.simpan(this.pegawai);
+            this.toaster.success('Pegawai "' + this.pegawai.nama + '" ', 'Tambah Sukses');
         }
     }
 

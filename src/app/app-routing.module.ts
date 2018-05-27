@@ -35,6 +35,12 @@ export const routes: Routes = [
     component: FullLayoutComponent,
     loadChildren: './pages/admin/admin.module#AdminModule',
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'stu',
+    component: FullLayoutComponent,
+    loadChildren: './pages/stu/stu.module#StuModule',
+    canActivate: [AuthGuard]
   }
 ];
 

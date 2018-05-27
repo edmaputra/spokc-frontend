@@ -5,6 +5,8 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { KantorDivisi } from '../../../model/master/kantor-divisi';
 import { KantorDivisiService } from '../../../service/master/kantor-divisi.service';
 
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
     templateUrl: 'kantor.component.html'
 })
@@ -16,7 +18,11 @@ export class KantorComponent implements OnInit {
     private kantor: KantorDivisi;
     private idHapus: number;
 
-    constructor(private service: KantorDivisiService, private router: Router) {}
+    constructor(
+        private service: KantorDivisiService,
+        private router: Router,
+        private toaster: ToastrService
+    ) {}
 
     ngOnInit() {
         this.dapatkanSemua();
@@ -39,6 +45,7 @@ export class KantorComponent implements OnInit {
     hapus() {
         if (this.idHapus) {
             this.service.hapus(this.idHapus);
+            this.toaster.info('ID Kantor "' + this.idHapus, 'Hapus Berhasil');
         }
     }
 

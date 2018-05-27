@@ -6,7 +6,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Jabatan } from '../../../model/master/jabatan';
 import { JabatanService } from '../../../service/master/jabatan.service';
 
-import { AlertService } from '../../../service/alert.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     templateUrl: 'tambah-jabatan.component.html'
@@ -15,12 +15,13 @@ import { AlertService } from '../../../service/alert.service';
 export class TambahJabatanComponent implements OnInit {
     @ViewChild('f') form: any;
     jabatan = new Jabatan();
+    jabatanOld: string;
 
     constructor(
         private service: JabatanService,
-        private alertService: AlertService,
         private router: Router,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private toaster: ToastrService
     ) {}
 
     ngOnInit() {
@@ -30,6 +31,7 @@ export class TambahJabatanComponent implements OnInit {
             a.subscribe(
                 res => {
                     this.jabatan = res;
+                    this.jabatanOld = this.jabatan.nama;
                 }
             );
         }
@@ -46,8 +48,10 @@ export class TambahJabatanComponent implements OnInit {
     tambah() {
         if (this.jabatan.id) {
             this.service.update(this.jabatan);
+            this.toaster.success('Jabatan "' + this.jabatanOld + ' => ' + this.jabatan.nama + '"', 'Edit Sukses');
         } else {
             this.service.simpan(this.jabatan);
+            this.toaster.success('Jabatan "' + this.jabatan.nama + '"', 'Tambah Sukses');
         }
     }
 

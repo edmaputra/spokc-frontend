@@ -14,7 +14,7 @@
                                 <label for="nama">Nama</label>
                                 <input type="text" class="form-control" id="nama" name="nama" [(ngModel)]="pegawai.nama" required #nama="ngModel">
                                 <div  *ngIf="nama.errors && (nama.dirty || nama.touched)" >
-                                    <div *ngIf="nama.errors.required"><div class="help-block">Harap Isi Nama Pegawai</div></div>
+                                    <div *ngIf="nama.errors.required"><small class="text-danger">Harap Isi Nama Pegawai</small></div>
                                 </div>
                             </div>                            
                         </div> 
@@ -23,7 +23,7 @@
                                 <label for="nip">Nomor Register</label>
                                 <input type="text" class="form-control" id="nomorRegister" name="nomorRegister" [(ngModel)]="pegawai.nomorRegister" required #nomorRegister="ngModel">
                                 <div  *ngIf="nomorRegister.errors && (nomorRegister.dirty || nomorRegister.touched)" >
-                                    <div *ngIf="nomorRegister.errors.required"><div class="help-block">Harap Isi No. Register Pegawai</div></div>
+                                    <div *ngIf="nomorRegister.errors.required"><small class="text-danger">Harap Isi No. Register Pegawai</small></div>
                                 </div>
                             </div>                            
                         </div>

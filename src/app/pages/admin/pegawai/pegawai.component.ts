@@ -5,6 +5,8 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Pegawai } from '../../../model/master';
 import { PegawaiService } from '../../../service/master/pegawai.service';
 
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
     templateUrl: 'pegawai.component.html'
 })
@@ -15,7 +17,7 @@ export class PegawaiComponent implements OnInit {
     private pegawais: Pegawai[];
     private idHapus: number;
 
-    constructor(private service: PegawaiService, private router: Router) {}
+    constructor(private service: PegawaiService, private router: Router, private toaster: ToastrService) {}
 
     ngOnInit() {
         this.dapatkanSemua();
@@ -40,6 +42,7 @@ export class PegawaiComponent implements OnInit {
     hapus() {
         if (this.idHapus) {
             this.service.hapus(this.idHapus);
+            this.toaster.info('ID Pegawai "' + this.idHapus, 'Hapus Berhasil');
         }
     }
 

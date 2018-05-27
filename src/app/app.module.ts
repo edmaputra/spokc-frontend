@@ -57,7 +57,6 @@ import {
   ReplaceDirective,
   SIDEBAR_TOGGLE_DIRECTIVES
 } from './directives';
-import { Browser } from 'protractor';
 
 const APP_DIRECTIVES = [
   AsideToggleDirective,

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Pengguna } from '../../model/user/pengguna';
+import { Jabatan } from '../../model/master/jabatan';
 
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
@@ -8,30 +8,34 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 import { AppConfig } from '../../app-config';
-
 import { ApiService } from '../../service/api.service';
 
 @Injectable()
-export class PenggunaService {
+export class StuService {
 
     private url;
-    private pengguna: Pengguna;
+    private jabatan: Jabatan;
 
     constructor(private http: HttpClient, private api: ApiService, private appConfig: AppConfig) {
         this.url = appConfig.getAPI();
-        this.url = this.url + '/a/user/';
+        this.url = this.url + '/a/jabatan/';
     }
 
-    setPengguna(pengguna: Pengguna) {
-        this.pengguna = pengguna;
+    setJabatan(jabatan: Jabatan) {
+        this.jabatan = jabatan;
     }
 
-    getPengguna(): Pengguna {
-        return this.pengguna;
+    getJabatan(): Jabatan {
+        return this.jabatan;
     }
 
-    dapatkanSemua(): Observable<Pengguna[]> {
+    dapatkanSemua(): Observable<Jabatan[]> {
         return this.api.get(this.url);
+    }
+
+    dapatkanSemuaNama(): Observable<Jabatan[]> {
+        const nama = this.url + 'nama';
+        return this.api.get(nama);
     }
 
     dapatkan(id) {
@@ -48,17 +52,12 @@ export class PenggunaService {
         }
     }
 
-    simpan(pengguna: Pengguna) {
-        this.api.post(this.url, pengguna);
+    simpan(jabatan: Jabatan) {
+        this.api.post(this.url, jabatan);
     }
 
-    update(pengguna: Pengguna) {
-        this.api.put(this.url, pengguna);
-    }
-
-    resetPassword(pengguna: Pengguna) {
-        const urlid = this.url + 'reset';
-        this.api.put(urlid, pengguna);
+    update(jabatan: Jabatan) {
+        this.api.put(this.url, jabatan);
     }
 
     hapus(id) {

@@ -49,8 +49,10 @@
                                     <input class="form-check-input" style="width: 25px; height: 25px;" type="checkbox" [checked]="pengguna.credentialsExpired" disabled>
                                 </td>
                                 <td>
-                                    <button (click)="edit(pengguna.id)" class="btn btn-primary"><i class="icon-wrench"></i></button>
-                                    <button class="btn btn-danger" data-toggle="modal" (click)="modalHapus.show(); setIdHapus(pengguna.id)"><i class="icon-trash"></i></button>
+                                    <button title="Edit Pengguna" (click)="edit(pengguna.id)" class="btn btn-primary"><i class="icon-wrench"></i></button>
+                                    <button title="Reset Password" class="btn btn-default" data-toggle="modal" (click)="modalResetPassword.show(); setIdReset(pengguna.id)"><i class="icon-reload"></i></button>
+                                    <button title="Hapus Pengguna" class="btn btn-danger" data-toggle="modal" (click)="modalHapus.show(); setIdHapus(pengguna.id)"><i class="icon-trash"></i></button>
+                                    
                                 </td>
                             </tr>
                         </tbody>
@@ -73,6 +75,23 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" (click)="modalHapus.hide()">Tidak</button>
                 <button type="button" class="btn btn-danger" (click)="hapus(); modalHapus.hide()">Ya, Hapus</button>
+              </div>
+        </div>
+    </div>
+</div>
+
+<div bsModal #modalResetPassword="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi Reset Password</h5>
+            </div>
+            <div class="modal-body">
+              Password untuk User ini akan di-reset menjadi <strong>"123456"</strong>, lanjut reset ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="modalResetPassword.hide()">Tidak</button>
+                <button type="button" class="btn btn-danger" (click)="resetPassword(); modalResetPassword.hide()">Ya, Reset</button>
               </div>
         </div>
     </div>

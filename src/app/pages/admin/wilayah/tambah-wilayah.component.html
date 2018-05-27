@@ -14,7 +14,7 @@
                                         <label for="level">Kode</label>
                                         <input type="text" class="form-control" id="kode" placeholder="0" name="kode" [(ngModel)]="wilayah.kode" required #kode="ngModel">
                                         <div  *ngIf="kode.errors && (kode.dirty || kode.touched)" >
-                                            <div *ngIf="kode.errors.required"><div class="help-block" >Harap Isi Kode Wilayah</div></div>
+                                            <div *ngIf="kode.errors.required"><small class="text-danger">Harap Isi Kode Wilayah</small></div>
                                         </div>
                                     </div>                            
                                 </div>
@@ -23,7 +23,7 @@
                                 <label for="nama">Nama</label>
                                 <input type="text" class="form-control" id="nama" name="nama" [(ngModel)]="wilayah.nama" required #nama="ngModel">
                                 <div  *ngIf="nama.errors && (nama.dirty || nama.touched)" >
-                                    <div *ngIf="nama.errors.required"><div class="help-block">Harap Isi Nama Jabatan</div></div>
+                                    <div *ngIf="nama.errors.required"><small class="text-danger">Harap Isi Nama Jabatan</small></div>
                                 </div>
                             </div>                            
                         </div>

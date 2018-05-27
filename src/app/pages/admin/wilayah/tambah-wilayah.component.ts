@@ -6,7 +6,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Wilayah } from '../../../model/master/wilayah';
 import { WilayahService } from '../../../service/master/wilayah.service';
 
-import { AlertService } from '../../../service/alert.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     templateUrl: 'tambah-wilayah.component.html'
@@ -15,10 +15,11 @@ import { AlertService } from '../../../service/alert.service';
 export class TambahWilayahComponent implements OnInit {
     @ViewChild('f') form: any;
     wilayah = new Wilayah();
+    wilayahOld: string;
 
     constructor(
         private service: WilayahService,
-        private alertService: AlertService,
+        private toaster: ToastrService,
         private router: Router,
         private route: ActivatedRoute
     ) {}
@@ -30,6 +31,7 @@ export class TambahWilayahComponent implements OnInit {
             a.subscribe(
                 res => {
                     this.wilayah = res;
+                    this.wilayahOld = this.wilayah.nama;
                 }
             );
         }
@@ -46,8 +48,10 @@ export class TambahWilayahComponent implements OnInit {
     tambah() {
         if (this.wilayah.id) {
             this.service.update(this.wilayah);
+            this.toaster.success('Wilayah "' + this.wilayahOld + ' => ' + this.wilayah.nama + '"', 'Edit Sukses');
         } else {
             this.service.simpan(this.wilayah);
+            this.toaster.success('Wilayah "' + this.wilayah.nama + '" ', 'Tambah Sukses');
         }
     }
 

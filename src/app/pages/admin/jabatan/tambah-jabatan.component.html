@@ -14,7 +14,7 @@
                                 <label for="nama">Nama</label>
                                 <input type="text" class="form-control" id="nama" placeholder="Nama Jabatan" name="nama" [(ngModel)]="jabatan.nama" required #nama="ngModel">
                                 <div  *ngIf="nama.errors && (nama.dirty || nama.touched)" >
-                                    <div *ngIf="nama.errors.required"><div class="help-block">Harap Isi Nama Jabatan</div></div>
+                                    <div *ngIf="nama.errors.required"><small class="text-danger">Harap Isi Nama Jabatan</small></div>
                                 </div>
                             </div>                            
                         </div>
@@ -26,7 +26,7 @@
                                     Please provide a valid informations.
                                   </div>
                                 <div  *ngIf="level.errors && (level.dirty || level.touched)" >
-                                    <div *ngIf="level.errors.required"><div class="help-block" >Harap Isi Level Jabatan</div></div>
+                                    <div *ngIf="level.errors.required"><small class="text-danger" >Harap Isi Level Jabatan</small></div>
                                 </div>
                             </div>                            
                         </div>

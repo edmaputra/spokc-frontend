@@ -6,6 +6,8 @@ import 'rxjs/add/observable/throw';
 import { LoginService } from './login.service';
 import { Pengguna } from '../../model/user/pengguna';
 
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   templateUrl: 'login.component.html'
 })
@@ -18,7 +20,7 @@ export class LoginComponent {
   loginButton = 'Login';
   @ViewChild('f') form: any;
 
-  constructor(private auth: LoginService, private router: Router) {}
+  constructor(private auth: LoginService, private router: Router, private toaster: ToastrService) {}
 
   login() {
     if (this.form.valid) {
@@ -31,7 +33,7 @@ export class LoginComponent {
           }
         }, err => {
           this.salah = true;
-          this.pesan = err;
+          this.toaster.error(err);
           this.loadingFalse();
         });
       }
