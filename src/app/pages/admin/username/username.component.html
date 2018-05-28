@@ -4,23 +4,14 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-lg-4 col-md-4">
-                                <strong style="font-size: 28pt">Jabatan</strong>
+                            <div class="col-lg-8 col-md-8">
+                                <strong style="font-size: 28pt">Username</strong>
                                 <small>Daftar</small>
                             </div>
-                            <div class="col-lg-8 col-md-8 col-xs-12">
-                                <form class="form-inline" (ngSubmit)="find()">
-                                    <div class="form-group">
-                                        <button class="form-control btn btn-primary btn-lg" type="button" routerLink="/admin/jabatan/e"><i class="icon-plus"></i></button>
-                                        <input type="text" id="cari" name="cari" class="form-control" placeholder="Cari.."  [(ngModel)]="cari" style="height: 44px;">
-                                        <button class="form-control btn btn-primary btn-lg" type="submit"><i class="icon-magnifier"></i></button>                                        
-                                        <button class="form-control btn btn-primary btn-lg" type="button" id="refresh" (click)="dapatkanSemua()"><i class="icon-refresh"></i></button>
-                                        <button class="form-control btn btn-default btn-lg" type="button"><i class="icon-printer"></i></button>
-                                    </div>
-                                </form>
-                                <!-- <button class="btn btn-primary btn-lg" routerLink="/admin/jabatan/e"><i class="icon-plus"></i></button>
+                            <div class="col-lg-4 col-md-4 text-right">
+                                <button class="btn btn-primary btn-lg" routerLink="/admin/username/e"><i class="icon-plus"></i></button>
                                 <button class="btn btn-primary btn-lg" id="refresh" (click)="dapatkanSemua()"><i class="icon-refresh"></i></button>
-                                <button class="btn btn-default btn-lg"><i class="icon-printer"></i></button> -->
+                                <button class="btn btn-default btn-lg"><i class="icon-printer"></i></button>
                             </div>
                         </div>                    
                     </div>
@@ -34,18 +25,18 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Nama</th>
-                                    <th>Level</th>
+                                    <th>Username</th>
+                                    <th>Tipe User</th>
                                     <th>*</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let jabatan of jabatans">
-                                    <td>{{jabatan.nama}}</td>
-                                    <td>{{jabatan.level}}</td>
+                                    <tr *ngFor="let username of usernames">
+                                    <td>{{username.nama}}</td>
+                                    <td>{{username.tipe}}</td>
                                     <td>
-                                        <button (click)="edit(jabatan.id)" class="btn btn-primary"><i class="icon-wrench"></i></button>
-                                        <button class="btn btn-danger" data-toggle="modal" (click)="modalHapus.show(); setIdHapus(jabatan.id)"><i class="icon-trash"></i></button>
+                                        <button (click)="edit(username.id)" class="btn btn-primary"><i class="icon-wrench"></i></button>
+                                        <button class="btn btn-danger" data-toggle="modal" (click)="modalHapus.show(); setIdHapus(username.id)"><i class="icon-trash"></i></button>
                                     </td>
                                 </tr>
                             </tbody>

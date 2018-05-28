@@ -12,17 +12,28 @@ import { PegawaiComponent, TambahPegawaiComponent } from './pegawai';
 import { JabatanComponent, TambahJabatanComponent } from './jabatan';
 import { KantorComponent, TambahKantorComponent } from './kantor';
 import { PenggunaComponent, TambahPenggunaComponent, UpdatePenggunaComponent } from './pengguna';
+import { UsernameComponent, TambahUsernameComponent } from './username';
+
 const ADMIN_COMPONENTS = [
   WilayahComponent, TambahWilayahComponent,
   PegawaiComponent, TambahPegawaiComponent,
   JabatanComponent, TambahJabatanComponent,
   KantorComponent, TambahKantorComponent,
-  PenggunaComponent, TambahPenggunaComponent, UpdatePenggunaComponent
+  PenggunaComponent, TambahPenggunaComponent, UpdatePenggunaComponent,
+  UsernameComponent, TambahUsernameComponent
 ];
 
-import { PegawaiService, JabatanService, WilayahService, KantorDivisiService } from '../../service/master';
+import { PegawaiService, JabatanService, WilayahService, KantorDivisiService, UsernameService } from '../../service/master';
 import { PenggunaService, OtoritasService } from '../../service/user';
-const ADMIN_SERVICES = [PegawaiService, JabatanService, PenggunaService, WilayahService, KantorDivisiService, OtoritasService];
+const ADMIN_SERVICES = [
+  PegawaiService,
+  JabatanService,
+  PenggunaService,
+  WilayahService,
+  KantorDivisiService,
+  OtoritasService,
+  UsernameService
+];
 
 import { EqualValidator } from '../../directives/equal-validator';
 

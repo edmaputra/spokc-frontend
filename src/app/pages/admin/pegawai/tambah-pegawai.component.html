@@ -46,6 +46,12 @@
                                 clearAllText="Clear" name="pengguna" required>
                              </ng-select>
                         </div>
+                        <div class="col-sm-4 col-md-4">
+                            <label for="unit">Username</label>
+                            <ng-select [items]="usernames" [hideSelected]="true" [multiple]="true" [(ngModel)]="pegawai.username" bindLabel="nama"
+                                clearAllText="Clear" name="username" required>
+                             </ng-select>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer">

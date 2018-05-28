@@ -5,10 +5,9 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { NgOption } from '@ng-select/ng-select';
 import { Observable } from 'rxjs/Observable';
 
-import { Pegawai, Jabatan, KantorDivisi } from '../../../model/master';
+import { Pegawai, Jabatan, KantorDivisi, Username } from '../../../model/master';
 import { Pengguna } from '../../../model/user/pengguna';
-// import { Unit } from '../../../model/master/unit';
-import { PegawaiService, JabatanService, KantorDivisiService } from '../../../service/master';
+import { PegawaiService, JabatanService, KantorDivisiService, UsernameService } from '../../../service/master';
 import { PenggunaService } from '../../../service/user/pengguna.service';
 
 import { ToastrService } from 'ngx-toastr';
@@ -23,6 +22,7 @@ export class TambahPegawaiComponent implements OnInit {
     jabatans: Jabatan[];
     kantors: KantorDivisi[];
     penggunas: Pengguna[];
+    usernames: Username[];
     pegawaiOld: string;
 
     constructor(
@@ -30,6 +30,7 @@ export class TambahPegawaiComponent implements OnInit {
         private jabatanService: JabatanService,
         private kdService: KantorDivisiService,
         private penggunaService: PenggunaService,
+        private usernameService: UsernameService,
         private toaster: ToastrService,
         private router: Router,
         private route: ActivatedRoute
@@ -39,6 +40,7 @@ export class TambahPegawaiComponent implements OnInit {
         this.jabatanService.dapatkanSemua().subscribe(resp => this.jabatans = resp);
         this.kdService.dapatkanSemua().subscribe(resp => this.kantors = resp);
         this.penggunaService.dapatkanSemua().subscribe(resp => this.penggunas = resp);
+        this.usernameService.dapatkanSemua().subscribe(resp => this.usernames = resp);
         const id = this.route.snapshot.paramMap.get('id');
         if (id) {
             this.service.dapatkan(id).subscribe(res => {

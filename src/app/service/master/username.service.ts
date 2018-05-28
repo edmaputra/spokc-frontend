@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Jabatan } from '../../model/master/jabatan';
 
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
@@ -9,41 +8,38 @@ import 'rxjs/add/observable/throw';
 
 import { AppConfig } from '../../app-config';
 import { ApiService } from '../../service/api.service';
+import { Username } from '../../model/master';
 
 @Injectable()
-export class JabatanService {
+export class UsernameService {
 
     private url;
-    private jabatan: Jabatan;
+    private username: Username;
 
     constructor(private http: HttpClient, private api: ApiService, private appConfig: AppConfig) {
         this.url = appConfig.getAPI();
-        this.url = this.url + '/a/jabatan';
+        this.url = this.url + '/a/u/';
     }
 
-    setJabatan(jabatan: Jabatan) {
-        this.jabatan = jabatan;
+    setJabatan(username: Username) {
+        this.username = username;
     }
 
-    getJabatan(): Jabatan {
-        return this.jabatan;
+    getJabatan(): Username {
+        return this.username;
     }
 
-    dapatkanSemua(): Observable<Jabatan[]> {
+    dapatkanSemua(): Observable<Username[]> {
         return this.api.get(this.url);
     }
 
-    dapatkanDenganCari(cari: string): Observable<Jabatan[]> {
-        return this.api.getCari(this.url, cari);
-    }
-
-    dapatkanSemuaNama(): Observable<Jabatan[]> {
-        const nama = this.url + '/nama';
+    dapatkanSemuaNama(): Observable<Username[]> {
+        const nama = this.url + 'nama';
         return this.api.get(nama);
     }
 
     dapatkan(id) {
-        const urlid = this.url + '/' + id;
+        const urlid = this.url + id;
         return this.api.get(urlid);
     }
 
@@ -56,16 +52,16 @@ export class JabatanService {
         }
     }
 
-    simpan(jabatan: Jabatan) {
+    simpan(jabatan: Username) {
         this.api.post(this.url, jabatan);
     }
 
-    update(jabatan: Jabatan) {
+    update(jabatan: Username) {
         this.api.put(this.url, jabatan);
     }
 
     hapus(id) {
-        const urlHapus = this.url + '/' + id;
+        const urlHapus = this.url + id;
         this.api.delete(urlHapus);
     }
 }

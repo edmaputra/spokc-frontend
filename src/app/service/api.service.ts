@@ -21,6 +21,15 @@ export class ApiService {
             .catch((error: any) => Observable.throw(error.json().error || 'Server Side Error'));
     }
 
+    getCari(url: string, cari: string): Observable<any> {
+        const params = new HttpParams().set('c', cari);
+        return this.http.get(url, {headers: null, params: params})
+            .map((resp) => {
+                return resp;
+            })
+            .catch((error: any) => Observable.throw(error.json().error || 'Server Side Error'));
+    }
+
     getResponseStatusCode(url: string): Observable<any> {
         return this.http.get(url, {observe: 'response'})
             .map((resp) => {

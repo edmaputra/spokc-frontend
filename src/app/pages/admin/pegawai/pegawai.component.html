@@ -29,7 +29,8 @@
                                 <th>No. Register</th>
                                 <th>Jabatan</th>
                                 <th>Kantor</th>
-                                <th>User</th>
+                                <th>Pengguna</th>
+                                <th>Username System</th>
                                 <th>*</th>
                                 </tr>
                             </thead>
@@ -40,7 +41,11 @@
                                 <td>{{pegawai.jabatan.nama}}</td>
                                 <td>{{pegawai.kantorDivisi.nama}}</td>
                                 <td>{{pegawai.pengguna.username}}</td>
-                                
+                                <td>
+                                    <div *ngFor = "let user of pegawai.username">
+                                        {{user.nama}} &nbsp;
+                                    </div>
+                                </td>
                                 <td>
                                     <button (click)="edit(pegawai.id)" class="btn btn-primary"><i class="icon-wrench"></i></button>
                                     <button class="btn btn-danger" data-toggle="modal" (click)="modalHapus.show(); setIdHapus(pegawai.id)"><i class="icon-trash"></i></button>

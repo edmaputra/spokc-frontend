@@ -8,6 +8,7 @@ import { PegawaiComponent, TambahPegawaiComponent } from './pegawai';
 import { JabatanComponent, TambahJabatanComponent } from './jabatan';
 import { KantorComponent, TambahKantorComponent } from './kantor';
 import { PenggunaComponent, TambahPenggunaComponent, UpdatePenggunaComponent } from './pengguna';
+import { UsernameComponent, TambahUsernameComponent } from './username';
 
 const routes: Routes = [
     {
@@ -126,6 +127,27 @@ const routes: Routes = [
                 component: UpdatePenggunaComponent,
                 data: {
                     title: 'Pengguna'
+                }
+            },
+            {
+                path: 'username',
+                component: UsernameComponent,
+                data: {
+                    title: 'Username'
+                }
+            },
+            {
+                path: 'username/e',
+                component: TambahUsernameComponent,
+                data: {
+                    title: 'Username'
+                }
+            },
+            {
+                path: 'username/e/:id',
+                component: TambahUsernameComponent,
+                data: {
+                    title: 'Username'
                 }
             },
         ]

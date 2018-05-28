@@ -1,6 +1,5 @@
-import { Jabatan } from './jabatan';
 import { Pengguna } from '../user/pengguna';
-import { KantorDivisi } from './kantor-divisi';
+import { Username, Jabatan, KantorDivisi } from '.';
 
 export class Pegawai {
     id: number;
@@ -9,4 +8,5 @@ export class Pegawai {
     jabatan: Jabatan;
     pengguna: Pengguna;
     kantorDivisi: KantorDivisi;
+    username: Username[];
 }
