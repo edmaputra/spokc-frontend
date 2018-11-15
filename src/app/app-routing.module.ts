@@ -37,9 +37,10 @@ export const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'stu',
+    path: 'iteb',
     component: FullLayoutComponent,
-    loadChildren: './pages/stu/stu.module#StuModule',
+    loadChildren: './pages/it-ebanking/it-ebanking.module#ItEbankingModule',
+    // loadChildren: './pages/stu/stu.module#StuModule',
     canActivate: [AuthGuard]
   }
 ];

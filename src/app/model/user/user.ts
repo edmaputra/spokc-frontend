@@ -1,6 +1,6 @@
-import { Otoritas } from '.';
+import { Role } from '.';
 
-export class Pengguna {
+export class User {
     id: number;
     username: string;
     password: string;
@@ -9,5 +9,5 @@ export class Pengguna {
     accountLocked: boolean;
     credentialsExpired: boolean;
     enabled: boolean;
-    authorities: Otoritas[];
+    roles: Role[];
 }

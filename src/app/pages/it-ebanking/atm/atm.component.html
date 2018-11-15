@@ -1,0 +1,133 @@
+<div class="animated fadeIn">
+
+  <!-- card pencarian -->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-4 col-md-4">
+              <strong style="font-size: 20pt">ATM</strong>
+              <small>Daftar</small>
+            </div>
+            <div class="col-lg-8 col-md-8 col-xs-12">
+              <form class="form-inline float-right" (ngSubmit)="findAll()">
+                <div class="form-group">
+                  <input type="text" id="cari" name="cari" class="form-control" placeholder="Cari.." [(ngModel)]="search">
+                  <button class="form-control btn btn-primary" type="submit"><i class="icon-magnifier"></i></button>
+                  <button class="form-control btn btn-primary" type="button" id="refresh" (click)="reset()"><i class="icon-refresh"></i></button>
+                  <button class="form-control btn btn-default" type="button"><i class="icon-printer"></i></button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end of card pencarian -->
+
+
+  <div class="row">
+    <div class="col-lg-8 col-md-8 col-xs-12">
+      <div class="card">
+        <div class="card-body">
+          <table class="table table-responsive-sm table-hover mb-0">
+            <thead class="thead-light">
+              <tr>
+                <th>ID</th>
+                <th>Denominasi</th>
+                <th>Serial Number</th>
+                <th>*</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let atm of atms">
+                <td>{{atm.name}}</td>
+                <td>{{atm.denomination | number}}</td>
+                <td>{{atm.serialNumber}}</td>
+                <td>
+                  <button (click)="getAtm(atm.name)" class="btn btn-primary"><i class="icon-wrench"></i></button>
+                  <button class="btn btn-danger" data-toggle="modal" (click)="modalHapus.show(); setIdHapus(atm.id)"><i class="icon-trash"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <br />
+          <div class="row">
+            <div class="col-xs-12 col-12 d-sm-down-none">
+              <pagination [directionLinks]="false" [boundaryLinks]="true" [itemsPerPage]="size" [totalItems]="totalElements" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-xs-12">
+      <form name="form" (ngSubmit)="saveAtm()" novalidate #f="ngForm">
+        <div class="card">
+          <div class="card-header">
+            <strong>ATM</strong>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-xs-12">
+                <div class="form-group">
+                  <label for="name">ID</label>
+                  <input type="text" class="form-control" id="name" name="name" [(ngModel)]="atm.name" required #name="ngModel" />
+                  <div *ngIf="name.errors && (name.dirty || name.touched)">
+                    <div *ngIf="name.errors.required"><small class="text-danger">Harap Isi ID</small></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-5 col-md-5 col-xs-5">
+                <div class="form-group">
+                  <label for="denomination">Denominasi</label>
+                  <input type="number" class="form-control" id="denomination" name="denomination" [(ngModel)]="atm.denomination" required #denomination="ngModel" />
+                  <div *ngIf="denomination.errors && (denomination.dirty || denomination  .touched)">
+                    <div *ngIf="denomination.errors.required"><small class="text-danger">Harap Isi Denominasi</small></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-7 col-md-7 col-xs-7">
+                <div class="form-group">
+                  <label for="denomination">SN</label>
+                  <input type="text" class="form-control" id="serialNumber" name="serialNumber" [(ngModel)]="atm.serialNumber" #serialNumber="ngModel" />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-xs-12">
+                <div class="form-group">
+                  <label for="address">Alamat</label>
+                  <textarea rows="3" class="form-control" id="address" name="address" [(ngModel)]="atm.address" #address="ngModel"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <input type="hidden" id="id" name="id" [(ngModel)]="atm.id" />
+            <button type="submit" class="btn btn-primary" [disabled]="f.invalid"><i class="fa fa-dot-circle-o"></i> Simpan</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div bsModal #modalHapus="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi Hapus</h5>
+        </div>
+        <div class="modal-body">
+          Apakah Anda Yakin Ingin Menghapus Data Ini ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="modalHapus.hide()">Tidak</button>
+          <button type="button" class="btn btn-danger" (click)="delete(); modalHapus.hide()">Ya, Hapus</button>
+        </div>
+      </div>
+    </div>
+  </div>

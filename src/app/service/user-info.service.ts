@@ -5,34 +5,61 @@ import { Token } from '../model/user/token';
 @Injectable()
 export class UserInfoService {
 
-    public currentUserKey = 'access_token';
-    public storage: Storage = sessionStorage;
+  public currentUserKey = 'access_token';
+  public currentRefreshKey = 'refresh_token';
+  public currentRegion = 'region';
+  public storage: Storage = sessionStorage;
 
 
-    constructor() {}
+  constructor() { }
 
-    simpanUserInfo(tokenJwt: any) {
-        this.storage.setItem(this.currentUserKey, tokenJwt);
-    }
+  simpanUserInfo(tokenJwt: any) {
+    this.storage.setItem(this.currentUserKey, tokenJwt);
+  }
 
-    hapusUserInfo() {
-        this.storage.removeItem(this.currentUserKey);
-    }
+  saveUserInfo(accessToken: string, refreshToken: string, region: string) {
+    this.storage.setItem(this.currentUserKey, accessToken);
+    this.storage.setItem(this.currentRefreshKey, refreshToken);
+    this.storage.setItem(this.currentRegion, region);
+  }
 
-    dapatkanToken() {
-        return this.storage.getItem(this.currentUserKey);
-    }
+  hapusUserInfo() {
+    this.storage.removeItem(this.currentUserKey);
+  }
 
-    sudahMasukkah(): boolean {
-        const helper = new JwtHelperService();
-        const token = this.dapatkanToken();
+  deleteUserInfo(){
+    this.storage.removeItem(this.currentUserKey);
+    this.storage.removeItem(this.currentRefreshKey);
+    this.storage.removeItem(this.currentRegion);
 
-        return !helper.isTokenExpired(token);
-    }
+  }
 
-    dapatkanUserInfo() {
-        console.log(this.storage.getItem(this.currentUserKey));
-        console.log(JSON.parse(this.storage.getItem(this.currentUserKey)));
-    }
+  dapatkanToken() {
+    return this.storage.getItem(this.currentUserKey);
+  }
+
+  getAccessToken() {
+    return this.storage.getItem(this.currentUserKey);
+  }
+
+  getRefreshToken() {
+    return this.storage.getItem(this.currentRefreshKey);
+  }
+
+  getUserRegion() {
+    return this.storage.getItem(this.currentRegion);
+  }
+
+  sudahMasukkah(): boolean {
+    const helper = new JwtHelperService();
+    const token = this.dapatkanToken();
+
+    return !helper.isTokenExpired(token);
+  }
+
+  dapatkanUserInfo() {
+    console.log(this.storage.getItem(this.currentUserKey));
+    console.log(JSON.parse(this.storage.getItem(this.currentUserKey)));
+  }
 
 }

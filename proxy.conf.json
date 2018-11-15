@@ -1,0 +1,14 @@
+{
+  "/oauth/**": {
+    "target": "http://localhost:11001/",
+    "secure": false
+  },
+  "/master/**": {
+    "target": "http://localhost:11001/",
+    "secure": false
+  },
+  "/tieb/**": {
+    "target": "http://localhost:11002/",
+    "secure": true
+  }
+}

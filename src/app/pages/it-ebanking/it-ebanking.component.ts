@@ -6,10 +6,10 @@ import 'rxjs/add/observable/throw';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  templateUrl: 'stu.component.html'
+  templateUrl: 'it-ebanking.component.html'
 })
 
-export class StuComponent implements OnInit {
+export class ItEbankingComponent implements OnInit {
 
     constructor() {}
 

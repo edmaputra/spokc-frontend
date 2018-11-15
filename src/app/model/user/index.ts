@@ -1,2 +1,3 @@
-export * from './otoritas';
-export * from './pengguna';
+export * from './user';
+export * from './role';
+export * from './permission';

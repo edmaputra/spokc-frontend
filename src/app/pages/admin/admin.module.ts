@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { NgSelectModule, NG_SELECT_DEFAULT_CONFIG } from '@ng-select/ng-select';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
@@ -24,11 +24,11 @@ const ADMIN_COMPONENTS = [
 ];
 
 import { PegawaiService, JabatanService, WilayahService, KantorDivisiService, UsernameService } from '../../service/master';
-import { PenggunaService, OtoritasService } from '../../service/user';
+import { UserService, OtoritasService } from '../../service/user';
 const ADMIN_SERVICES = [
   PegawaiService,
   JabatanService,
-  PenggunaService,
+  UserService,
   WilayahService,
   KantorDivisiService,
   OtoritasService,
@@ -51,17 +51,17 @@ import { EqualValidator } from '../../directives/equal-validator';
     ...ADMIN_COMPONENTS
   ],
   providers: [
-    ...ADMIN_SERVICES,
-    {
-      provide: NG_SELECT_DEFAULT_CONFIG,
-      useValue: {
-          notFoundText: 'Item Tidak Ditemukan',
-          addTagText: 'Tambah item',
-          typeToSearchText: 'Ketik untuk Mencari',
-          loadingText: 'Memuat...',
-          clearAllText: 'Bersihkan Semua'
-      }
-  }
+    ...ADMIN_SERVICES
+    // {
+      // provide: NG_SELECT_DEFAULT_CONFIG,
+      // useValue: {
+      //   notFoundText: 'Item Tidak Ditemukan',
+      //   addTagText: 'Tambah item',
+      //   typeToSearchText: 'Ketik untuk Mencari',
+      //   loadingText: 'Memuat...',
+      //   clearAllText: 'Bersihkan Semua'
+      // }
+    // }
   ]
 })
 

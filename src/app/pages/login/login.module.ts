@@ -7,11 +7,14 @@ import { LoginComponent } from './login.component';
 import { LoginRoutingModule } from './login.routing';
 import { LoginService } from './login.service';
 
+import { NgxLoadingModule } from 'ngx-loading';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    LoginRoutingModule
+    LoginRoutingModule,
+    NgxLoadingModule.forRoot({})
   ],
   declarations: [
     LoginComponent

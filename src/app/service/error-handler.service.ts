@@ -5,42 +5,28 @@ import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/filter';
 
 import { HttpErrorResponse } from '@angular/common/http';
-import { AlertService } from './alert.service';
+
+import { ToasterGenerator } from './toaster-generator';
 
 @Injectable()
 export class ErrorHandlerService {
 
     errMsg: string;
 
-    constructor(private alertService: AlertService) {}
+    constructor(private toastr: ToasterGenerator) {}
 
     public getErrorMessage() {
         return this.errMsg;
     }
 
     public handleError(error: HttpErrorResponse) {
-        // this.alertService.error(error.error.error_description);
-        // console.error(error.error.error_description);
-        // switch (error.status) {
-        //       case 401:
-        //         this.errMsg = 'Username or password is incorrect';
-        //         break;
-        //       case 404:
-        //         this.errMsg = 'Service not found';
-        //         break;
-        //       case 408:
-        //         this.errMsg = 'Request Timeout';
-        //         break;
-        //       case 500:
-        //         this.errMsg = 'Internal Server Error';
-        //         break;
-        //       default:
-        //         this.errMsg = 'Server Error';
-        //     }
-            // console.log(this.errMsg);
+        const message = error.error.message;
+        const title = error.statusText;
+        const code = error.error.informationCode;
+        this.toastr.show(message, title, code);
         this.errMsg = (error.error.error_description || error.message || 'Server error');
-        return Observable.throw(error.error.error_description || error.message || 'Server error');
-      }
 
+        return Observable.throw(this.errMsg);
+      }
 
 }

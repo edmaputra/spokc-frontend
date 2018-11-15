@@ -8,14 +8,18 @@ import { environment } from '../environments/environment';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { TokenInterceptor } from './service/token.interceptor';
+
+
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppConfig } from './app-config';
-import { AuthGuard, UserInfoService, ErrorHandlerService, AlertService, ApiService } from './service';
-const APP_SERVICES = [AuthGuard, UserInfoService, ErrorHandlerService, AlertService, ApiService, AppConfig];
+import { AuthGuard, UserInfoService, ErrorHandlerService, AlertService, ApiService, ToasterGenerator } from './service';
+const APP_SERVICES = [AuthGuard, UserInfoService, ErrorHandlerService, AlertService, ApiService, AppConfig, ToasterGenerator];
 
 import { FullLayoutComponent, SimpleLayoutComponent } from './containers';
 const APP_CONTAINERS = [
@@ -76,6 +80,7 @@ const APP_DIRECTIVES = [
     BrowserModule,
     AlertModule.forRoot(),
     ModalModule.forRoot(),
+    TabsModule.forRoot(),
     BsDropdownModule.forRoot(),
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     AppRoutingModule,
